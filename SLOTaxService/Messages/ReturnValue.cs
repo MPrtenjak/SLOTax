@@ -93,10 +93,12 @@ namespace MNet.SLOTaxService.Messages
       }
 
       XmlNode errMsgNode = XmlHelperFunctions.GetSubNode(this.MessageReceivedFromFurs.DocumentElement, "fu:ErrorMessage");
+      XmlNode errMsgCodeNode = XmlHelperFunctions.GetSubNode(this.MessageReceivedFromFurs.DocumentElement, "fu:ErrorCode");
       if (errMsgNode != null)
       {
         this.Success = false;
-        this.ErrorMessage = errMsgNode.InnerText;
+        string id = (errMsgCodeNode == null) ? string.Empty : string.Format("[{0}]: ", errMsgCodeNode.InnerText);
+        this.ErrorMessage = id + errMsgNode.InnerText;
       }
 
       XmlNode uniqueInvoiceIDNode = XmlHelperFunctions.GetSubNode(this.MessageReceivedFromFurs.DocumentElement, "fu:UniqueInvoiceID");
