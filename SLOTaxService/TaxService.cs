@@ -7,6 +7,7 @@
 using System.Xml;
 using MNet.SLOTaxService.Messages;
 using MNet.SLOTaxService.Services;
+using MNet.SLOTaxService.Utils;
 
 namespace MNet.SLOTaxService
 {
@@ -25,7 +26,38 @@ namespace MNet.SLOTaxService
       return (rv.Success) ? rv.ProtectedID : null;
     }
 
+    public ReturnValue Send(string message)
+    {
+      try
+      {
+        XmlDocument xmlDoc = XmlHelperFunctions.CreateNewXmlDocument();
+        xmlDoc.LoadXml(message);
+        return this.Send(xmlDoc);
+      }
+      catch (System.Exception ex)
+      {
+        return ReturnValue.Error(SendingStep.MessageReceived, null, ex.Message);
+      }
+    }
+
+    public ReturnValue Send(XmlDocument message)
+    {
+      string root = message.DocumentElement.LocalName;
+
+      XmlNode node = XmlHelperFunctions.GetSubNode(message.DocumentElement, "fu:InvoiceRequest");
+      if (string.Compare(root, "InvoiceRequest", true) == 0) return this.SendInvoice(message);
+      if (string.Compare(root, "BusinessPremiseRequest", true) == 0) return this.SendBusinessPremise(message);
+      if (string.Compare(root, "EchoRequest", true) == 0) return this.SendEcho(message);
+
+      return ReturnValue.Error(SendingStep.MessageReceived, null, "Neznani dokument / Unknown document");
+    }
+
     public ReturnValue SendEcho(string message)
+    {
+      return this.execute(Echo.Create(message, this.Settings));
+    }
+
+    public ReturnValue SendEcho(XmlDocument message)
     {
       return this.execute(Echo.Create(message, this.Settings));
     }

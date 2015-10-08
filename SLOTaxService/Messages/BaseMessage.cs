@@ -73,7 +73,7 @@ namespace MNet.SLOTaxService.Messages
     protected void checkRoot(MessageType expectedType)
     {
       if (this.MessageType != expectedType)
-        throw new ArgumentOutOfRangeException("Unknown document");
+        throw new ArgumentOutOfRangeException("Neznani dokument / Unknown document");
     }
 
     protected void checkHeader()

@@ -26,10 +26,10 @@ namespace MNet.SLOTaxService.Services
       store.Close();
 
       if ((matchingCertificates == null) || (matchingCertificates.Count < 1))
-        throw new Exception("Can't find certificate");
+        throw new Exception("Ne najdem digitalnega potrdila / Can't find certificate");
 
       if (matchingCertificates.Count > 1)
-        throw new Exception("Certificate not unique");
+        throw new Exception("Digitalno potrdilo ni edinstveno / Certificate not unique");
 
       return matchingCertificates[0];
     }
@@ -54,12 +54,12 @@ namespace MNet.SLOTaxService.Services
           if (certificate == null)
             certificate = cert;
           else
-            throw new Exception("Certificate not unique");
+            throw new Exception("Digitalno potrdilo ni edinstveno / Certificate not unique");
         }
       }
 
       if (certificate == null)
-        throw new Exception("Can't find certificate");
+        throw new Exception("Ne najdem digitalnega potrdila / Can't find certificate");
 
       return certificate;
     }
@@ -67,7 +67,7 @@ namespace MNet.SLOTaxService.Services
     public X509Certificate2 GetFromFile(string certificateFile, string password)
     {
       if (!File.Exists(certificateFile))
-        throw new Exception("Can't find certificate");
+        throw new Exception("Ne najdem digitalnega potrdila / Can't find certificate");
 
       return new X509Certificate2(certificateFile, password);
     }

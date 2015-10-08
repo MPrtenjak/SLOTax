@@ -6,7 +6,7 @@
 
 using System.Windows;
 
-namespace SLOTaxGuiTest
+namespace MNet.SLOTaxGuiTest
 {
   public partial class App : Application
   {

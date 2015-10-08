@@ -23,6 +23,11 @@ namespace MNet.SLOTaxService.Messages
       return new Echo(echoDoc, settings);
     }
 
+    public static Echo Create(XmlDocument message, Settings settings)
+    {
+      return new Echo(message, settings);
+    }
+
     public void Check()
     {
       this.checkRoot(MessageType.Echo);

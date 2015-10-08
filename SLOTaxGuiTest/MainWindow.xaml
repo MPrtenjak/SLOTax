@@ -1,9 +1,9 @@
-﻿<Window x:Class="SLOTaxGuiTest.MainWindow"
+﻿<Window x:Class="MNet.SLOTaxGuiTest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SLOTaxGuiTest"
+        xmlns:local="clr-namespace:MNet.SLOTaxGuiTest"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1000">
   <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
@@ -17,22 +17,22 @@
     <DockPanel x:Name="pnlInput" Grid.Column="0" LastChildFill="true">
       <StackPanel x:Name="pnlSettings" DockPanel.Dock="Bottom" Margin="10">
         <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
-        <ComboBox x:Name="cbType" Margin="0,0,0,10" />
+        <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="0,0,0,10" />
         <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
-        <ComboBox x:Name="cbCertificates" Margin="0,0,0,10" />
-        <Button Content="Pošlji na FURS / Send tu FURS" Margin="10" MinHeight="30"/>
+        <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="0,0,0,10" />
+        <Button Content="Pošlji na FURS / Send tu FURS" Margin="10" MinHeight="30" Click="btnSend"/>
       </StackPanel>
       <DockPanel Margin="10" LastChildFill="true">
         <TextBlock DockPanel.Dock="Top" Text="Dokument / Document:" Margin="0,0,0,3" />
         <StackPanel DockPanel.Dock="Bottom" >
           <TextBlock Text="Primeri / Examples:" Margin="5,0,0,3" />
           <WrapPanel>
-            <Button Content="Echo / Echo" Margin="3" MinWidth="100"/>
-            <Button Content="Račun / Invoice" Margin="3" MinWidth="100" />
-            <Button Content="Poslovni prostor / Business Premises" Margin="3" MinWidth="200"/>
+            <Button x:Name="btnEcho" Content="Echo / Echo" Margin="3" MinWidth="100" Click="btnExampleClick"/>
+            <Button x:Name="btnInvoice" Content="Račun / Invoice" Margin="3" MinWidth="100" Click="btnExampleClick"/>
+            <Button x:Name="btnBusinessPremises" Content="Poslovni prostor / Business Premises" Margin="3" MinWidth="200" Click="btnExampleClick"/>
           </WrapPanel>
         </StackPanel>
-        <TextBox></TextBox>
+        <TextBox x:Name="tbInput" />
       </DockPanel>
     </DockPanel>
 

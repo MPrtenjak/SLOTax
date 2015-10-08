@@ -16,7 +16,13 @@ namespace MNet.SLOTaxService
 
     string CalculateProtectiveMark(XmlDocument message);
 
+    ReturnValue Send(string message);
+
+    ReturnValue Send(XmlDocument message);
+
     ReturnValue SendEcho(string message);
+
+    ReturnValue SendEcho(XmlDocument message);
 
     ReturnValue SendBusinessPremise(XmlDocument message);
 

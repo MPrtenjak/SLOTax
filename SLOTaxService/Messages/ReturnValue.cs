@@ -46,9 +46,18 @@ namespace MNet.SLOTaxService.Messages
 
     private ReturnValue(SendingStep step, IMessage message, string errorMessage)
     {
+      this.Step = step;
+
+      if (message == null)
+      {
+        this.Success = false;
+        this.ErrorMessage = errorMessage;
+        this.messageType = MessageType.Unknown;
+        return;
+      }
+
       this.messageType = message.MessageType;
       this.originalMessage = message.Message;
-      this.Step = step;
       this.MessageSendToFurs = (step >= SendingStep.SoapEnvelopeGenerated) ? message.MessageSendToFurs : null;
       this.MessageReceivedFromFurs = (step >= SendingStep.MessageSend) ? message.MessageReceivedFromFurs : null;
 
