@@ -30,7 +30,7 @@
 
             <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
             <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="10, 0, 10, 10" />
-            
+
             <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
             <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="10, 0, 10, 10" />
 
@@ -46,32 +46,12 @@
       <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFC8DBEC" />
 
       <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
-          </Grid.RowDefinitions>
-
-          <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"  Background="#FFC8DBEC" />
-
-          <TabControl Grid.Row="0" x:Name="tabControl">
-            <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
-              <DockPanel>
-                <TextBox x:Name="tbToFurs" FontFamily="Courier New" IsReadOnly="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
-              </DockPanel>
-            </TabItem>
-
-            <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
-              <TextBox x:Name="tbFromFurs" FontFamily="Courier New" IsReadOnly="True" Margin="3,0,-3,0"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
-            </TabItem>
-          </TabControl>
-
-          <StackPanel Grid.Row="2">
-            <Border BorderBrush="{x:Null}" MinHeight="50" Background="#FFFF4848">
-              <StackPanel x:Name="pnlError">
+        <Border x:Name="pnlResult" DockPanel.Dock="Bottom" Margin="0,10,0,10" Padding="10" BorderBrush="Black" BorderThickness="2" >
+          <StackPanel>
+            <Border x:Name="pnlError" BorderBrush="{x:Null}" MinHeight="50" Background="#FFFF4848">
+              <StackPanel>
                 <TextBlock Text="Napaka / Error:" Margin="0,0,0,3" FontSize="12" FontWeight="Bold" />
-                <TextBlock x:Name="tbError" Text="Sporočilo Napake / Error Message" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbError" Text="Sporočilo Napake / Error Message" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" TextWrapping="Wrap" />
               </StackPanel>
             </Border>
 
@@ -82,18 +62,30 @@
             <Border x:Name="pnlEOR" BorderBrush="{x:Null}" Margin="0,20,0,0">
               <StackPanel>
                 <TextBlock Text="Enkratna identifikacijska oznaka računa / Unique identification invoice mark:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock x:Name="tbEOR" Text="EOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbEOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" Foreground="Blue" Text="EOR" />
               </StackPanel>
             </Border>
 
             <Border x:Name="pnlZOI" BorderBrush="{x:Null}" Margin="0,30,0,0">
               <StackPanel>
                 <TextBlock Text="Zaščitna oznaka izdajatelja računa / Protective mark of the invoice issuer:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock x:Name="tbZOI" Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbZOI" Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" Foreground="Blue" FontWeight="Bold" />
               </StackPanel>
             </Border>
           </StackPanel>
-        </Grid>
+        </Border>
+
+        <TabControl x:Name="tabControl">
+          <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
+            <DockPanel>
+              <TextBox x:Name="tbToFurs" FontFamily="Courier New" IsReadOnly="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+            </DockPanel>
+          </TabItem>
+
+          <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
+            <TextBox x:Name="tbFromFurs" FontFamily="Courier New" IsReadOnly="True" Margin="3,0,-3,0"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+          </TabItem>
+        </TabControl>
       </DockPanel>
     </Grid>
   </Border>

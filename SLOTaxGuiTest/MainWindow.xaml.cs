@@ -47,6 +47,7 @@ namespace MNet.SLOTaxGuiTest
       this.cbType.SelectedIndex = 0;
       this.cbCertificates.SelectedIndex = 0;
       this.showExample(this.btnEcho);
+      this.showResults(null);
     }
 
     private Stream getResource(string name)
@@ -120,6 +121,25 @@ namespace MNet.SLOTaxGuiTest
     {
       if (rv.MessageSendToFurs != null) this.tbToFurs.Text = this.prettyXml(rv.MessageSendToFurs);
       if (rv.MessageReceivedFromFurs != null) this.tbFromFurs.Text = this.prettyXml(rv.MessageReceivedFromFurs);
+
+      this.tbError.Text = rv.ErrorMessage;
+      this.tbEOR.Text = rv.UniqueInvoiceID;
+      this.tbZOI.Text = rv.ProtectedID;
+
+      this.showResults(rv);
+    }
+
+    private void showResults(ReturnValue rv)
+    {
+      this.pnlSuccess.Visibility = ((rv == null) || (!rv.Success)) ? Visibility.Collapsed : Visibility.Visible;
+      this.pnlError.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ErrorMessage))) ? Visibility.Collapsed : Visibility.Visible;
+      this.pnlEOR.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.UniqueInvoiceID))) ? Visibility.Collapsed : Visibility.Visible;
+      this.pnlZOI.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ProtectedID))) ? Visibility.Collapsed : Visibility.Visible;
+
+      this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) || 
+                                   (this.pnlError.Visibility == Visibility.Visible) ||
+                                   (this.pnlEOR.Visibility == Visibility.Visible) ||
+                                   (this.pnlZOI.Visibility == Visibility.Visible)) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     #region INotifyPropertyChanged Members
