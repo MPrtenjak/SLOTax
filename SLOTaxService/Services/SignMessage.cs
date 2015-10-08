@@ -68,7 +68,7 @@ namespace MNet.SLOTaxService.Services
         case MessageType.Invoice:
           return XmlHelperFunctions.GetSubNode(message.DocumentElement, "fu:InvoiceRequest");
 
-        case MessageType.BuisinessPremise:
+        case MessageType.BusinessPremise:
           return XmlHelperFunctions.GetSubNode(message.DocumentElement, "fu:BusinessPremiseRequest");
       }
 

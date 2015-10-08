@@ -29,7 +29,7 @@ namespace MNet.SLOTaxService.Messages
 
       Dictionary<string, MessageType> types = new Dictionary<string, MessageType>();
       types.Add("InvoiceRequest", MessageType.Invoice);
-      types.Add("BusinessPremiseRequest", MessageType.BuisinessPremise);
+      types.Add("BusinessPremiseRequest", MessageType.BusinessPremise);
       types.Add("EchoRequest", MessageType.Echo);
 
       string root = this.Message.DocumentElement.LocalName;

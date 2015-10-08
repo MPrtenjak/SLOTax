@@ -17,7 +17,7 @@ namespace MNet.SLOTaxService.UnitTests
     public void SendWrongXmlDocument1()
     {
       XmlDocument xmlDoc = this.getXml("ErrInvoice1.xml");
-      ReturnValue rv = this.taxService.SendBuisinessPremise(xmlDoc);
+      ReturnValue rv = this.taxService.SendBusinessPremise(xmlDoc);
       Assert.IsNotNull(rv.ErrorMessage);
       Assert.AreEqual(rv.Step, SendingStep.MessageReceived);
       Assert.False(rv.Success);
@@ -31,7 +31,7 @@ namespace MNet.SLOTaxService.UnitTests
     public void SendWrongXmlDocument2()
     {
       XmlDocument xmlDoc = this.getXml("ErrBusinessPremise.xml");
-      ReturnValue rv = this.taxService.SendBuisinessPremise(xmlDoc);
+      ReturnValue rv = this.taxService.SendBusinessPremise(xmlDoc);
       Assert.IsNotNull(rv.ErrorMessage);
       Assert.AreEqual(rv.Step, SendingStep.MessageSigned);
       Assert.False(rv.Success);
@@ -45,7 +45,7 @@ namespace MNet.SLOTaxService.UnitTests
     public void SendOKXmlDocument()
     {
       XmlDocument xmlDoc = this.getXml("OKBusinessPremise.xml");
-      ReturnValue rv = this.taxService.SendBuisinessPremise(xmlDoc);
+      ReturnValue rv = this.taxService.SendBusinessPremise(xmlDoc);
       Assert.IsNullOrEmpty(rv.ErrorMessage);
       Assert.AreEqual(rv.Step, SendingStep.MessageSend);
       Assert.True(rv.Success);

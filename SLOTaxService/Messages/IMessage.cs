@@ -11,7 +11,7 @@ namespace MNet.SLOTaxService.Messages
   internal enum MessageType
   {
     Invoice,
-    BuisinessPremise,
+    BusinessPremise,
     Echo,
     Unknown,
   }

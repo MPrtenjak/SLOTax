@@ -18,7 +18,7 @@ namespace MNet.SLOTaxService
 
     ReturnValue SendEcho(string message);
 
-    ReturnValue SendBuisinessPremise(XmlDocument message);
+    ReturnValue SendBusinessPremise(XmlDocument message);
 
     ReturnValue SendInvoice(XmlDocument message);
   }

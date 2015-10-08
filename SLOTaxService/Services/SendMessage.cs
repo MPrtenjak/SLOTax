@@ -19,7 +19,7 @@ namespace MNet.SLOTaxService.Services
     {
       this.soapActions = new Dictionary<MessageType, string>();
       this.soapActions.Add(MessageType.Invoice, @"SOAPAction: /invoices");
-      this.soapActions.Add(MessageType.BuisinessPremise, @"SOAPAction: /invoices/register");
+      this.soapActions.Add(MessageType.BusinessPremise, @"SOAPAction: /invoices/register");
       this.soapActions.Add(MessageType.Echo, @"SOAPAction: /echo");
     }
 

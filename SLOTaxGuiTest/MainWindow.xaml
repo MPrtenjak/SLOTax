@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SLOTaxGuiTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="650" Width="1000">
+  <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
+  <Grid Grid.Row="2">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="5" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <DockPanel x:Name="pnlInput" Grid.Column="0" LastChildFill="true">
+      <StackPanel x:Name="pnlSettings" DockPanel.Dock="Bottom" Margin="10">
+        <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
+        <ComboBox x:Name="cbType" Margin="0,0,0,10" />
+        <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
+        <ComboBox x:Name="cbCertificates" Margin="0,0,0,10" />
+        <Button Content="Pošlji na FURS / Send tu FURS" Margin="10" MinHeight="30"/>
+      </StackPanel>
+      <DockPanel Margin="10" LastChildFill="true">
+        <TextBlock DockPanel.Dock="Top" Text="Dokument / Document:" Margin="0,0,0,3" />
+        <StackPanel DockPanel.Dock="Bottom" >
+          <TextBlock Text="Primeri / Examples:" Margin="5,0,0,3" />
+          <WrapPanel>
+            <Button Content="Echo / Echo" Margin="3" MinWidth="100"/>
+            <Button Content="Račun / Invoice" Margin="3" MinWidth="100" />
+            <Button Content="Poslovni prostor / Business Premises" Margin="3" MinWidth="200"/>
+          </WrapPanel>
+        </StackPanel>
+        <TextBox></TextBox>
+      </DockPanel>
+    </DockPanel>
+
+    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+    <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
+      <TabControl x:Name="tabControl">
+        <TabItem Header="Sporočilo poslano na FURS / Message Send Tu FURS">
+          <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem Header="TabItem">
+          <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+      </TabControl>
+
+    </DockPanel>
+  </Grid>
 </Window>

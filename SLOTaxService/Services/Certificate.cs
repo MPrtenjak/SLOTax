@@ -4,6 +4,7 @@
 // <author>Matjaz Prtenjak</author>
 //-----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -69,6 +70,23 @@ namespace MNet.SLOTaxService.Services
         throw new Exception("Can't find certificate");
 
       return new X509Certificate2(certificateFile, password);
+    }
+
+    public List<X509Certificate2> GetAllFursCertificates()
+    {
+      List<X509Certificate2> result = new List<X509Certificate2>();
+
+      List<StoreLocation> certificateStores = new List<StoreLocation>() { StoreLocation.CurrentUser, StoreLocation.LocalMachine };
+      foreach (var cerStore in certificateStores)
+      {
+        X509Store store = new X509Store(cerStore);
+        store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
+        foreach (var cert in store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true))
+          result.Add(cert);
+        store.Close();
+      }
+
+      return result;
     }
 
     internal static RSACryptoServiceProvider getCryptoProvider(X509Certificate2 certificate)

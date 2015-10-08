@@ -1,4 +1,4 @@
-﻿// <copyright file="BuisinessPremise.cs" company="MNet">
+﻿// <copyright file="BusinessPremise.cs" company="MNet">
 //     Copyright (c) Matjaz Prtenjak All rights reserved.
 // </copyright>
 // <author>Matjaz Prtenjak</author>
@@ -11,16 +11,16 @@ using MNet.SLOTaxService.Utils;
 
 namespace MNet.SLOTaxService.Messages
 {
-  internal class BuisinessPremise : BaseMessage, IMessage
+  internal class BusinessPremise : BaseMessage, IMessage
   {
-    public static BuisinessPremise Create(XmlDocument message, Settings settings)
+    public static BusinessPremise Create(XmlDocument message, Settings settings)
     {
-      return new BuisinessPremise(message, settings);
+      return new BusinessPremise(message, settings);
     }
 
     public void Check()
     {
-      this.checkRoot(MessageType.BuisinessPremise);
+      this.checkRoot(MessageType.BusinessPremise);
       this.checkHeader();
       this.checkData();
     }
@@ -30,7 +30,7 @@ namespace MNet.SLOTaxService.Messages
       this.executeSign();
     }
 
-    private BuisinessPremise(XmlDocument message, Settings settings) :
+    private BusinessPremise(XmlDocument message, Settings settings) :
       base(message, settings, MessageAction.Send)
     {
     }
