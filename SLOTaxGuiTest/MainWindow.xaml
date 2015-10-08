@@ -5,81 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MNet.SLOTaxGuiTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000">
+        Title="SLO Davčno potrjevanje računov / SLO Fiscal verification of invoices" Height="650" Width="1000">
   <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
-  <Grid Grid.Row="2">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="5" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
 
-    <DockPanel x:Name="pnlInput" Grid.Column="0" LastChildFill="true">
-      <StackPanel x:Name="pnlSettings" DockPanel.Dock="Bottom" Margin="10">
-        <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
-        <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="0,0,0,10" />
-        <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
-        <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="0,0,0,10" />
-        <Button Content="Pošlji na FURS / Send tu FURS" Margin="10" MinHeight="30" Click="btnSend"/>
-      </StackPanel>
-      <DockPanel Margin="10" LastChildFill="true">
-        <TextBlock DockPanel.Dock="Top" Text="Dokument / Document:" Margin="0,0,0,3" />
-        <StackPanel DockPanel.Dock="Bottom" >
-          <TextBlock Text="Primeri / Examples:" Margin="5,0,0,3" />
-          <WrapPanel>
-            <Button x:Name="btnEcho" Content="Echo / Echo" Margin="3" MinWidth="100" Click="btnExampleClick"/>
-            <Button x:Name="btnInvoice" Content="Račun / Invoice" Margin="3" MinWidth="100" Click="btnExampleClick"/>
-            <Button x:Name="btnBusinessPremises" Content="Poslovni prostor / Business Premises" Margin="3" MinWidth="200" Click="btnExampleClick"/>
-          </WrapPanel>
-        </StackPanel>
-        <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold" />
+  <Border BorderBrush="{x:Null}" Padding="10" Background="#FFC8DBEC">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="20" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <DockPanel x:Name="pnlInput" Grid.Column="0" LastChildFill="true">
+        <Border DockPanel.Dock="Bottom" Margin="10" Padding="10" BorderBrush="Black" BorderThickness="2" >
+          <StackPanel x:Name="pnlSettings">
+            <StackPanel Margin="10, 0, 10, 10">
+              <TextBlock Text="Primeri / Examples:" Margin="0,0,0,3" />
+              <WrapPanel Margin="0,0,0,10" HorizontalAlignment="Center">
+                <Button x:Name="btnEcho" Content=" Echo / Echo " Margin="0,0,15,0" MinHeight="30" Click="btnExampleClick"/>
+                <Button x:Name="btnInvoice" Content=" Račun / Invoice " Margin="0,0,15,0" MinHeight="30" Click="btnExampleClick"/>
+                <Button x:Name="btnBusinessPremises" Content=" Poslovni prostor / Business Premises " MinHeight="30" Click="btnExampleClick"/>
+              </WrapPanel>
+            </StackPanel>
+
+            <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
+            <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="10, 0, 10, 10" />
+            
+            <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
+            <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="10, 0, 10, 10" />
+
+            <Button Content="Pošlji na FURS / Send tu FURS" Margin="50, 10, 50, 10" MinHeight="30" Click="btnSend"/>
+          </StackPanel>
+        </Border>
+        <DockPanel Margin="10" LastChildFill="true">
+          <TextBlock DockPanel.Dock="Top" Text="Dokument / Document:" Margin="0,0,0,3" />
+          <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        </DockPanel>
       </DockPanel>
-    </DockPanel>
 
-    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+      <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFC8DBEC" />
 
-    <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
-      <TabControl x:Name="tabControl">
-        <TabItem x:Name="tiDetail" Header="Podrobneje / Details">
-          <StackPanel>
+      <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+
+          <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"  Background="#FFC8DBEC" />
+
+          <TabControl Grid.Row="0" x:Name="tabControl">
+            <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
+              <DockPanel>
+                <TextBox x:Name="tbToFurs" FontFamily="Courier New" IsReadOnly="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+              </DockPanel>
+            </TabItem>
+
+            <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
+              <TextBox x:Name="tbFromFurs" FontFamily="Courier New" IsReadOnly="True" Margin="3,0,-3,0"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+            </TabItem>
+          </TabControl>
+
+          <StackPanel Grid.Row="2">
             <Border BorderBrush="{x:Null}" MinHeight="50" Background="#FFFF4848">
-              <StackPanel>
+              <StackPanel x:Name="pnlError">
                 <TextBlock Text="Napaka / Error:" Margin="0,0,0,3" FontSize="12" FontWeight="Bold" />
-                <TextBlock Text="Sporočilo Napake / Error Message" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbError" Text="Sporočilo Napake / Error Message" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
               </StackPanel>
             </Border>
 
-            <Border BorderBrush="{x:Null}" MinHeight="50" Background="#FFABE483">
-              <TextBlock Text="Uspeh / Success:" Margin="10" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="pnlSuccess" BorderBrush="{x:Null}" MinHeight="50" Background="#FFABE483">
+              <TextBlock x:Name="tbSuccess" Text="Uspeh / Success:" Margin="10" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
-            <Border BorderBrush="{x:Null}" Margin="0,30,0,0">
+            <Border x:Name="pnlEOR" BorderBrush="{x:Null}" Margin="0,20,0,0">
               <StackPanel>
                 <TextBlock Text="Enkratna identifikacijska oznaka računa / Unique identification invoice mark:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock Text="EOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbEOR" Text="EOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
               </StackPanel>
             </Border>
 
-            <Border BorderBrush="{x:Null}" Margin="0,30,0,0">
+            <Border x:Name="pnlZOI" BorderBrush="{x:Null}" Margin="0,30,0,0">
               <StackPanel>
                 <TextBlock Text="Zaščitna oznaka izdajatelja računa / Protective mark of the invoice issuer:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+                <TextBlock x:Name="tbZOI" Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
               </StackPanel>
             </Border>
           </StackPanel>
-        </TabItem>
-
-        <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
-          <DockPanel>
-            <TextBox x:Name="tbToFurs" FontFamily="Courier New" IsReadOnly="True" />
-          </DockPanel>
-        </TabItem>
-
-        <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
-          <TextBox x:Name="tbFromFurs" FontFamily="Courier New" IsReadOnly="True" Margin="3,0,-3,0" />
-        </TabItem>
-      </TabControl>
-
-    </DockPanel>
-  </Grid>
+        </Grid>
+      </DockPanel>
+    </Grid>
+  </Border>
 </Window>
