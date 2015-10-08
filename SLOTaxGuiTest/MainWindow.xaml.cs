@@ -142,6 +142,21 @@ namespace MNet.SLOTaxGuiTest
                                    (this.pnlZOI.Visibility == Visibility.Visible)) ? Visibility.Visible : Visibility.Collapsed;
     }
 
+    private void openFile()
+    {
+      Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+      dlg.DefaultExt = ".XML";
+      dlg.Filter = "XML Files (*.xml)|*.xml";
+
+      bool? result = dlg.ShowDialog();
+      if ((result.HasValue) && (result.Value))
+      {
+        string[] lines = File.ReadAllLines(dlg.FileName);
+        this.tbInput.Text = string.Join("\n", lines);
+      }
+    }
+
     #region INotifyPropertyChanged Members
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -162,6 +177,11 @@ namespace MNet.SLOTaxGuiTest
     private void btnSend(object sender, RoutedEventArgs e)
     {
       this.executeSend();
+    }
+
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+      this.openFile();
     }
     #endregion
   }

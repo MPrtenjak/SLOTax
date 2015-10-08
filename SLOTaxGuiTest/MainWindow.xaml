@@ -17,6 +17,8 @@
       </Grid.ColumnDefinitions>
 
       <DockPanel x:Name="pnlInput" Grid.Column="0" LastChildFill="true">
+        <TextBlock DockPanel.Dock="Top" Text="Vhod / Input" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18.667" Foreground="#FF0D2BEA"  />
+
         <Border DockPanel.Dock="Bottom" Margin="10" Padding="10" BorderBrush="Black" BorderThickness="2" >
           <StackPanel x:Name="pnlSettings">
             <StackPanel Margin="10, 0, 10, 10">
@@ -38,7 +40,16 @@
           </StackPanel>
         </Border>
         <DockPanel Margin="10" LastChildFill="true">
-          <TextBlock DockPanel.Dock="Top" Text="Dokument / Document:" Margin="0,0,0,3" />
+          <StackPanel DockPanel.Dock="Top">
+            <DockPanel LastChildFill="False">
+              <StackPanel DockPanel.Dock="Left">
+                <TextBlock DockPanel.Dock="Top" Text="Dokument / Document" Margin="0,0,0,0" />
+                <TextBlock DockPanel.Dock="Top" Text="Odprite datoteko na disku ali vpišite (prilepite) XML" Margin="30,0,0,0" FontStyle="Italic" />
+                <TextBlock DockPanel.Dock="Top" Text="Open file from disk or enter (paste) XML" Margin="30,0,0,3" FontStyle="Italic" />
+              </StackPanel>
+              <Button DockPanel.Dock="Right" x:Name="btnOpen" Content=" Odpri / Open " Click="btnOpen_Click"/>
+            </DockPanel>
+          </StackPanel>
           <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         </DockPanel>
       </DockPanel>
@@ -46,6 +57,8 @@
       <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFC8DBEC" />
 
       <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
+        <TextBlock DockPanel.Dock="Top" Text="Izhod / Output" Margin="0,0,0,25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18.667" Foreground="#FF0D2BEA"  />
+
         <Border x:Name="pnlResult" DockPanel.Dock="Bottom" Margin="0,10,0,10" Padding="10" BorderBrush="Black" BorderThickness="2" >
           <StackPanel>
             <Border x:Name="pnlError" BorderBrush="{x:Null}" MinHeight="50" Background="#FFFF4848">
