@@ -32,7 +32,7 @@ namespace MNet.SLOTaxService
 
     public ReturnValue SendBusinessPremise(XmlDocument message)
     {
-      return this.execute(BuisinessPremise.Create(message, this.Settings));
+      return this.execute(BusinessPremise.Create(message, this.Settings));
     }
 
     public ReturnValue SendInvoice(XmlDocument message)

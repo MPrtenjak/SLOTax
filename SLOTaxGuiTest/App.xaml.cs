@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// <copyright file="App.xaml.cs" company="MNet">
+//     Copyright (c) Matjaz Prtenjak All rights reserved.
+// </copyright>
+// <author>Matjaz Prtenjak</author>
+//-----------------------------------------------------------------------
+
 using System.Windows;
 
 namespace SLOTaxGuiTest
 {
-  /// <summary>
-  /// Interaction logic for App.xaml
-  /// </summary>
   public partial class App : Application
   {
   }

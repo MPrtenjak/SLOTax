@@ -60,7 +60,7 @@
     <Compile Include="Messages\Echo.cs" />
     <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Messages\BaseMessage.cs" />
-    <Compile Include="Messages\BuisinessPremise.cs" />
+    <Compile Include="Messages\BusinessPremise.cs" />
     <Compile Include="Messages\Invoice.cs" />
     <Compile Include="Messages\ReturnValue.cs" />
     <Compile Include="ITaxServer.cs" />

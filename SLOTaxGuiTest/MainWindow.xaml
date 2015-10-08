@@ -40,11 +40,43 @@
 
     <DockPanel x:Name="pnlOutput" Grid.Column="3" LastChildFill="true">
       <TabControl x:Name="tabControl">
-        <TabItem Header="Sporočilo poslano na FURS / Message Send Tu FURS">
-          <Grid Background="#FFE5E5E5"/>
+        <TabItem x:Name="tiDetail" Header="Podrobneje / Details">
+          <StackPanel>
+            <Border BorderBrush="{x:Null}" MinHeight="50" Background="#FFFF4848">
+              <StackPanel>
+                <TextBlock Text="Napaka / Error:" Margin="0,0,0,3" FontSize="12" FontWeight="Bold" />
+                <TextBlock Text="Sporočilo Napake / Error Message" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+              </StackPanel>
+            </Border>
+
+            <Border BorderBrush="{x:Null}" MinHeight="50" Background="#FFABE483">
+              <TextBlock Text="Uspeh / Success:" Margin="10" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="{x:Null}" Margin="0,30,0,0">
+              <StackPanel>
+                <TextBlock Text="Enkratna identifikacijska oznaka računa / Unique identification invoice mark:" Margin="0,0,0,3" FontWeight="Bold" />
+                <TextBlock Text="EOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+              </StackPanel>
+            </Border>
+
+            <Border BorderBrush="{x:Null}" Margin="0,30,0,0">
+              <StackPanel>
+                <TextBlock Text="Zaščitna oznaka izdajatelja računa / Protective mark of the invoice issuer:" Margin="0,0,0,3" FontWeight="Bold" />
+                <TextBlock Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
         </TabItem>
-        <TabItem Header="TabItem">
-          <Grid Background="#FFE5E5E5"/>
+
+        <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
+          <DockPanel>
+            <TextBox />
+          </DockPanel>
+        </TabItem>
+
+        <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
+          <TextBox />
         </TabItem>
       </TabControl>
 
