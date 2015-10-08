@@ -46,6 +46,7 @@ namespace MNet.SLOTaxGuiTest
 
       this.cbType.SelectedIndex = 0;
       this.cbCertificates.SelectedIndex = 0;
+      this.showExample(this.btnEcho);
     }
 
     private Stream getResource(string name)
@@ -62,22 +63,63 @@ namespace MNet.SLOTaxGuiTest
       }
     }
 
-    private string prettyXml(string xml)
+    private string prettyXml(string xmlString)
     {
-      var stringBuilder = new StringBuilder();
-      var element = XElement.Parse(xml);
+      XmlDocument xmlDoc = new XmlDocument();
+      xmlDoc.PreserveWhitespace = true;
+      xmlDoc.LoadXml(xmlString);
 
+      return this.prettyXml(xmlDoc);
+    }
+
+    private string prettyXml(XmlDocument xmlDoc)
+    {
       var settings = new XmlWriterSettings();
-      settings.OmitXmlDeclaration = true;
+      settings.OmitXmlDeclaration = false;
       settings.Indent = true;
       settings.NewLineOnAttributes = true;
 
+      var stringBuilder = new StringBuilder();
       using (var xmlWriter = XmlWriter.Create(stringBuilder, settings))
       {
-        element.Save(xmlWriter);
+        xmlDoc.Save(xmlWriter);
       }
 
       return stringBuilder.ToString();
+    }
+
+    private void showExample(object sender)
+    {
+      string resourceName = null;
+      if (sender == this.btnEcho) resourceName = "Echo.xml";
+      else if (sender == this.btnInvoice) resourceName = "Invoice.xml";
+      else if (sender == this.btnBusinessPremises) resourceName = "BusinessPremises.xml";
+
+      if (!string.IsNullOrEmpty(resourceName))
+        this.tbInput.Text = this.prettyXml(this.getResource(resourceName));
+    }
+
+    private void executeSend()
+    {
+      if (this.Certificates.Count < 1)
+      {
+        MessageBox.Show("Ne najdem digitalnih potrdil! / Can't find digital certificates!");
+        return;
+      }
+
+      var certificate = this.Certificates[this.cbCertificates.SelectedIndex];
+      var endPoint = this.FursEndPoints[this.cbType.SelectedIndex].Item2;
+      Settings settings = Settings.Create(certificate, endPoint, "http://www.fu.gov.si/");
+      TaxService ts = TaxService.Create(settings);
+
+      ReturnValue rv = ts.Send(this.tbInput.Text);
+      this.procesReturnValue(rv);
+    }
+
+    private void procesReturnValue(ReturnValue rv)
+    {
+      if (rv.MessageSendToFurs != null) this.tbToFurs.Text = this.prettyXml(rv.MessageSendToFurs);
+      if (rv.MessageReceivedFromFurs != null) this.tbFromFurs.Text = this.prettyXml(rv.MessageReceivedFromFurs);
     }
 
     #region INotifyPropertyChanged Members
@@ -94,29 +136,12 @@ namespace MNet.SLOTaxGuiTest
     #region EventHandlers
     private void btnExampleClick(object sender, RoutedEventArgs e)
     {
-      string resourceName = null;
-      if (sender == this.btnEcho) resourceName = "Echo.xml";
-      else if (sender == this.btnInvoice) resourceName = "Invoice.xml";
-      else if (sender == this.btnBusinessPremises) resourceName = "BusinessPremises.xml";
-
-      if (!string.IsNullOrEmpty(resourceName))
-        this.tbInput.Text = this.prettyXml(this.getResource(resourceName));
+      this.showExample(sender);
     }
 
     private void btnSend(object sender, RoutedEventArgs e)
     {
-      if (this.Certificates.Count < 1)
-      {
-        MessageBox.Show("Ne najdem digitalnih potrdil! / Can't find digital certificates!");
-        return;
-      }
-
-      var certificate = this.Certificates[this.cbCertificates.SelectedIndex];
-      var endPoint = this.FursEndPoints[this.cbType.SelectedIndex].Item2;
-      Settings settings = Settings.Create(certificate, endPoint, "http://www.fu.gov.si/");
-      TaxService ts = TaxService.Create(settings);
-
-      ReturnValue rv = ts.Send(this.tbInput.Text);
+      this.executeSend();
     }
     #endregion
   }

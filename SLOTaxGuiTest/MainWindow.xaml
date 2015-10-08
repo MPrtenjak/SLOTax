@@ -32,7 +32,7 @@
             <Button x:Name="btnBusinessPremises" Content="Poslovni prostor / Business Premises" Margin="3" MinWidth="200" Click="btnExampleClick"/>
           </WrapPanel>
         </StackPanel>
-        <TextBox x:Name="tbInput" />
+        <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold" />
       </DockPanel>
     </DockPanel>
 
@@ -71,12 +71,12 @@
 
         <TabItem x:Name="tiSend" Header="Poslano na FURS / Send To FURS">
           <DockPanel>
-            <TextBox />
+            <TextBox x:Name="tbToFurs" FontFamily="Courier New" IsReadOnly="True" />
           </DockPanel>
         </TabItem>
 
         <TabItem x:Name="tiReceived" Header="Prejeto iz FURS-a / Received From FURS">
-          <TextBox />
+          <TextBox x:Name="tbFromFurs" FontFamily="Courier New" IsReadOnly="True" Margin="3,0,-3,0" />
         </TabItem>
       </TabControl>
 
