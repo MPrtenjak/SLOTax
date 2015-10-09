@@ -104,7 +104,7 @@ namespace MNet.SLOTaxService.Utils
       StringBuilder sb = new StringBuilder(70);
       sb.Append(decNumber);
       sb.Append(taxNumber);
-      sb.Append(timeStamp.ToString("yyMMddhhmmss"));
+      sb.Append(timeStamp.ToString("yyMMddHHmmss"));
 
       return AppendModulo10(sb.ToString());
     }

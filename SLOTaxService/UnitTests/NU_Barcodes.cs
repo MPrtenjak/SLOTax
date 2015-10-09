@@ -55,6 +55,20 @@ namespace MNet.SLOTaxService.UnitTests
       }
     }
 
+    [Test]
+    public void generateBarCodeTest1()
+    {
+      string barCode = BarCodesHelpers.GenerateCode("a7e5f55e1dbb48b799268e1a6d8618a3", "12345678", Convert.ToDateTime("2015-08-15 10:13:32"));
+      StringAssert.AreEqualIgnoringCase(barCode, "223175087923687075112234402528973166755123456781508151013327");
+    }
+
+    [Test]
+    public void generateBarCodeTest2()
+    {
+      string barCode = BarCodesHelpers.GenerateCode("1234567890abcdef", "24578436", Convert.ToDateTime("2017-01-11 18:00:32"));
+      StringAssert.AreEqualIgnoringCase(barCode, "000000000000000000001311768467294899695245784361701111800322");
+    }
+
     private void doCheck10(string randomValue)
     {
       string value = BarCodesHelpers.AppendModulo10(randomValue);
