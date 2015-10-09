@@ -108,5 +108,34 @@ namespace MNet.SLOTaxService.Utils
 
       return AppendModulo10(sb.ToString());
     }
+
+    public static string[] SplitCode(string code, int lines)
+    {
+      if (lines < 1) lines = 1;
+      if (lines > 6) lines = 6;
+
+      string[] result = new string[lines];
+
+      if (lines == 1)
+      {
+        result[0] = code;
+        return result;
+      }
+
+      if (code.Length == 60)
+      {
+        int size = code.Length / lines;
+        string prefix = (lines == 4) ? "44" : "4";
+        for (int line = 0; line < lines; line++)
+          result[line] = string.Format("{0}{1}{2}", prefix, line + 1, code.Substring(line * size, size));
+      }
+      else
+      {
+        for (int line = 0; line < lines; line++)
+          result[line] = string.Empty;
+      }
+
+      return result;
+    }
   }
 }
