@@ -66,8 +66,14 @@ namespace MNet.SLOTaxService.Utils
       return modulo10;
     }
 
+    public static string AppendModulo10(string value)
+    {
+      int modulo10 = BarCodesHelpers.CalculateModulo10(value);
+      return value + (char)('0' + modulo10);
+    }
+
     // function from http://www.codeproject.com/Tips/515367/Validate-credit-card-number-with-Mod-algorithm
-    public static bool Mod10Check(string value)
+    public static bool CheckModulo10(string value)
     {
       //// check whether input string is null or empty
       if (string.IsNullOrEmpty(value))
@@ -93,7 +99,14 @@ namespace MNet.SLOTaxService.Utils
 
     public static string GenerateCode(string protectedIDHex, string taxNumber, DateTime timeStamp)
     {
-      return null;
+      string decNumber = HexToDecimal(protectedIDHex).PadLeft(39, '0');
+
+      StringBuilder sb = new StringBuilder(70);
+      sb.Append(decNumber);
+      sb.Append(taxNumber);
+      sb.Append(timeStamp.ToString("yyMMddhhmmss"));
+
+      return AppendModulo10(sb.ToString());
     }
   }
 }

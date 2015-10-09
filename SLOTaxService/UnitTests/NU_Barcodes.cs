@@ -1,4 +1,4 @@
-﻿// <copyright file="NU_BigNumbers.cs" company="MNet">
+﻿// <copyright file="NU_Barcodes.cs" company="MNet">
 //     Copyright (c) Matjaz Prtenjak All rights reserved.
 // </copyright>
 // <author>Matjaz Prtenjak</author>
@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace MNet.SLOTaxService.UnitTests
 {
-  internal class NU_BigNumbers
+  internal class NU_Barcodes
   {
     [Test]
     public void ConvertHex2DecTest()
@@ -57,9 +57,8 @@ namespace MNet.SLOTaxService.UnitTests
 
     private void doCheck10(string randomValue)
     {
-      int modulo10 = BarCodesHelpers.CalculateModulo10(randomValue);
-      string value1 = randomValue + (char)('0' + modulo10);
-      bool check = BarCodesHelpers.Mod10Check(value1);
+      string value = BarCodesHelpers.AppendModulo10(randomValue);
+      bool check = BarCodesHelpers.CheckModulo10(value);
       Assert.True(check);
     }
   }
