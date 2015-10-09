@@ -138,6 +138,7 @@ namespace MNet.SLOTaxGuiTest
       this.pnlEOR.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.UniqueInvoiceID))) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlZOI.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ProtectedID))) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlBarcode.Visibility = ((rv == null) || (rv.BarCodes == null)) ? Visibility.Collapsed : Visibility.Visible;
+      this.pnlBarcode1.Visibility = this.pnlBarcode.Visibility;
 
       this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) || 
                                    (this.pnlError.Visibility == Visibility.Visible) ||
