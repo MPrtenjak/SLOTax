@@ -126,6 +126,7 @@ namespace MNet.SLOTaxGuiTest
       this.tbEOR.Text = rv.UniqueInvoiceID;
       this.tbZOI.Text = rv.ProtectedID;
       this.tbBarcode.Text = (rv.BarCodes != null) ? rv.BarCodes.BarCodeValue : string.Empty;
+      this.imgBarcode.Text = this.tbBarcode.Text;
 
       this.showResults(rv);
     }

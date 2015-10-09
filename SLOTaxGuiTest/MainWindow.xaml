@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MNet.SLOTaxGuiTest"
+        xmlns:my="clr-namespace:Gma.QrCodeNet.Encoding.Windows.WPF;assembly=Gma.QrCodeNet.Encoding"
         mc:Ignorable="d"
         Title="SLO Davčno potrjevanje računov / SLO Fiscal verification of invoices" Height="650" Width="1000">
   <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
@@ -90,6 +91,7 @@
               <StackPanel>
                 <TextBlock Text="Vsebina QR črtne kode / Value of QR code:" Margin="0,0,0,3" FontWeight="Bold" />
                 <TextBlock x:Name="tbBarcode" Text="Barcode" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" Foreground="Blue" FontWeight="Bold" TextWrapping="Wrap"/>
+                <my:QrCodeImgControl x:Name="imgBarcode" Margin="0" Height="200" Width="200" Text="test" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" />
               </StackPanel>
             </Border>
           </StackPanel>

@@ -40,6 +40,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gma.QrCodeNet.Encoding">
+      <HintPath>..\common_reference\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\common_reference\nunit.framework.dll</HintPath>
     </Reference>
