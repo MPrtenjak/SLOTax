@@ -68,8 +68,8 @@ namespace MNet.SLOTaxService.Messages
 
     public void SendToFURS()
     {
-      SendMessage sm = new SendMessage();
-      this.MessageReceivedFromFurs = sm.Send(this.MessageSendToFurs, this.MessageType, this.Settings);
+      SendMessage sm = SendMessage.Create(this.Settings);
+      this.MessageReceivedFromFurs = sm.Send(this.MessageSendToFurs, this.MessageType);
     }
 
     protected void checkRoot(MessageType expectedType)
