@@ -67,11 +67,13 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Services\BarCodes.cs" />
     <Compile Include="Services\SendMessage.cs" />
     <Compile Include="Services\Settings.cs" />
     <Compile Include="Services\SignMessage.cs" />
     <Compile Include="TaxService.cs" />
     <Compile Include="UnitTests\NU_Base.cs" />
+    <Compile Include="UnitTests\NU_BigNumbers.cs" />
     <Compile Include="UnitTests\NU_SendEcho.cs" />
     <Compile Include="UnitTests\NU_SendBusinessPremise.cs" />
     <Compile Include="UnitTests\NU_SendInvoice.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="UnitTests\NU_ProtectiveMark.cs" />
     <Compile Include="Services\Certificate.cs" />
     <Compile Include="Services\ProtectiveMark.cs" />
+    <Compile Include="Utils\BarCodesHelpers.cs" />
     <Compile Include="Utils\XmlHelperFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
