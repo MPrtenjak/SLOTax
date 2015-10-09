@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 
 using System.Xml;
+using MNet.SLOTaxService.Services;
 using MNet.SLOTaxService.Utils;
 
 namespace MNet.SLOTaxService.Messages
@@ -43,6 +44,7 @@ namespace MNet.SLOTaxService.Messages
     public string ErrorMessage { get; private set; }
     public string ProtectedID { get; private set; }
     public string UniqueInvoiceID { get; private set; }
+    public BarCodes BarCodes { get; private set; }
 
     private ReturnValue(SendingStep step, IMessage message, string errorMessage)
     {
@@ -80,12 +82,12 @@ namespace MNet.SLOTaxService.Messages
 
     private void processCalculate(IMessage message)
     {
-      this.ProtectedID = this.getProtectedID(message.Message);
+      this.getProtectedID(message.Message);
     }
 
     private void processSend()
     {
-      this.ProtectedID = this.getProtectedID(this.originalMessage);
+      this.getProtectedID(this.originalMessage);
       if (this.MessageReceivedFromFurs == null)
       {
         this.Success = false;
@@ -106,10 +108,11 @@ namespace MNet.SLOTaxService.Messages
         this.UniqueInvoiceID = uniqueInvoiceIDNode.InnerText;
     }
 
-    private string getProtectedID(XmlDocument checkedDocument)
+    private void getProtectedID(XmlDocument checkedDocument)
     {
       XmlNode id = XmlHelperFunctions.GetSubNode(checkedDocument.DocumentElement, "fu:ProtectedID");
-      return (id == null) ? string.Empty : id.InnerText;
+      this.ProtectedID = (id == null) ? string.Empty : id.InnerText;
+      this.BarCodes = (id == null) ? null : BarCodes.Create(checkedDocument);
     }
 
     private MessageType messageType;
