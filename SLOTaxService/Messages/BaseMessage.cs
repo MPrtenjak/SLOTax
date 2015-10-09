@@ -24,8 +24,10 @@ namespace MNet.SLOTaxService.Messages
     public BaseMessage(XmlDocument message, Settings settings, MessageAction messageAction)
     {
       this.Message = message;
-      this.Settings = settings;
       this.MessageAction = messageAction;
+
+      this.Settings = settings;
+      this.signMessage = SignMessage.Create(this.Settings);
 
       Dictionary<string, MessageType> types = new Dictionary<string, MessageType>();
       types.Add("InvoiceRequest", MessageType.Invoice);
@@ -90,11 +92,11 @@ namespace MNet.SLOTaxService.Messages
 
     protected void executeSign()
     {
-      this.signMessage.Sign(this.MessageSendToFurs, this.MessageType, this.Settings);
+      this.signMessage.Sign(this.MessageSendToFurs, this.MessageType);
     }
 
-    protected Settings Settings { get; set; }
+    protected Settings Settings { get; private set; }
 
-    private SignMessage signMessage = new SignMessage();
+    private SignMessage signMessage;
   }
 }

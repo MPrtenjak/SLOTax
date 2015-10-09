@@ -17,7 +17,12 @@ namespace MNet.SLOTaxService.Services
 {
   internal class SignMessage
   {
-    public void Sign(XmlDocument message, MessageType messageType, Settings settings)
+    public static SignMessage Create(Settings settings)
+    {
+      return new SignMessage(settings);
+    }
+
+    public void Sign(XmlDocument message, MessageType messageType)
     {
       XmlNode mainNode = this.getMainNode(message, messageType);
       if (mainNode == null) return;
@@ -25,9 +30,9 @@ namespace MNet.SLOTaxService.Services
       CryptoConfig.AddAlgorithm(typeof(RSAPKCS1SHA256SignatureDescription), "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256");
 
       SignedXml signedXml = new SignedXml(message);
-      signedXml.SigningKey = settings.CryptoProvider;
+      signedXml.SigningKey = this.settings.CryptoProvider;
       signedXml.AddReference(this.getReference(mainNode));
-      signedXml.KeyInfo = this.getKeyInfo(settings);
+      signedXml.KeyInfo = this.getKeyInfo();
       signedXml.SignedInfo.SignatureMethod = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
       signedXml.ComputeSignature();
 
@@ -35,14 +40,14 @@ namespace MNet.SLOTaxService.Services
       mainNode.AppendChild(xmlDigitalSignature);
     }
 
-    private KeyInfo getKeyInfo(Settings settings)
+    private KeyInfo getKeyInfo()
     {
-      X509Extension extension = settings.Certificate.Extensions[1];
+      X509Extension extension = this.settings.Certificate.Extensions[1];
       AsnEncodedData asndata = new AsnEncodedData(extension.Oid, extension.RawData);
 
       KeyInfoX509Data keyInfoData = new KeyInfoX509Data();
-      keyInfoData.AddIssuerSerial(settings.Certificate.Issuer, settings.Certificate.SerialNumber);
-      keyInfoData.AddSubjectName(settings.Certificate.SubjectName.Name);
+      keyInfoData.AddIssuerSerial(this.settings.Certificate.Issuer, this.settings.Certificate.SerialNumber);
+      keyInfoData.AddSubjectName(this.settings.Certificate.SubjectName.Name);
 
       KeyInfo keyInfo = new KeyInfo();
       keyInfo.AddClause(keyInfoData);
@@ -74,5 +79,12 @@ namespace MNet.SLOTaxService.Services
 
       return null;
     }
+
+    private SignMessage(Settings settings)
+    {
+      this.settings = settings;
+    }
+
+    private Settings settings;
   }
 }
