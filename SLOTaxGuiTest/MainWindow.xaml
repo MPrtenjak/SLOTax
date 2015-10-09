@@ -75,14 +75,21 @@
             <Border x:Name="pnlEOR" BorderBrush="{x:Null}" Margin="0,20,0,0">
               <StackPanel>
                 <TextBlock Text="Enkratna identifikacijska oznaka računa / Unique identification invoice mark:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock x:Name="tbEOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" Foreground="Blue" Text="EOR" />
+                <TextBlock x:Name="tbEOR" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" FontWeight="Bold" Foreground="Blue" Text="EOR" TextWrapping="Wrap"/>
               </StackPanel>
             </Border>
 
-            <Border x:Name="pnlZOI" BorderBrush="{x:Null}" Margin="0,30,0,0">
+            <Border x:Name="pnlZOI" BorderBrush="{x:Null}" Margin="0,10,0,0">
               <StackPanel>
                 <TextBlock Text="Zaščitna oznaka izdajatelja računa / Protective mark of the invoice issuer:" Margin="0,0,0,3" FontWeight="Bold" />
-                <TextBlock x:Name="tbZOI" Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" Foreground="Blue" FontWeight="Bold" />
+                <TextBlock x:Name="tbZOI" Text="ZOI" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" Foreground="Blue" FontWeight="Bold" TextWrapping="Wrap"/>
+              </StackPanel>
+            </Border>
+            
+            <Border x:Name="pnlBarcode" BorderBrush="{x:Null}" Margin="0,10,0,0">
+              <StackPanel>
+                <TextBlock Text="Vsebina QR črtne kode / Value of QR code:" Margin="0,0,0,3" FontWeight="Bold" />
+                <TextBlock x:Name="tbBarcode" Text="Barcode" Margin="20,0,0,3" FontSize="15" FontStyle="Italic" Foreground="Blue" FontWeight="Bold" TextWrapping="Wrap"/>
               </StackPanel>
             </Border>
           </StackPanel>

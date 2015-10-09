@@ -37,7 +37,7 @@ namespace MNet.SLOTaxService.Services
       if ((protectedIDNode == null) || (taxNumberNode == null) || (timeStampNode == null))
         this.BarCodeValue = string.Empty;
       else
-        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode));
+        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText));
     }
 
     private XmlDocument invoice;

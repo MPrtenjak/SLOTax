@@ -125,6 +125,7 @@ namespace MNet.SLOTaxGuiTest
       this.tbError.Text = rv.ErrorMessage;
       this.tbEOR.Text = rv.UniqueInvoiceID;
       this.tbZOI.Text = rv.ProtectedID;
+      this.tbBarcode.Text = (rv.BarCodes != null) ? rv.BarCodes.BarCodeValue : string.Empty;
 
       this.showResults(rv);
     }
@@ -135,11 +136,13 @@ namespace MNet.SLOTaxGuiTest
       this.pnlError.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ErrorMessage))) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlEOR.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.UniqueInvoiceID))) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlZOI.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ProtectedID))) ? Visibility.Collapsed : Visibility.Visible;
+      this.pnlBarcode.Visibility = ((rv == null) || (rv.BarCodes == null)) ? Visibility.Collapsed : Visibility.Visible;
 
       this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) || 
                                    (this.pnlError.Visibility == Visibility.Visible) ||
                                    (this.pnlEOR.Visibility == Visibility.Visible) ||
-                                   (this.pnlZOI.Visibility == Visibility.Visible)) ? Visibility.Visible : Visibility.Collapsed;
+                                   (this.pnlZOI.Visibility == Visibility.Visible) ||
+                                   (this.pnlBarcode.Visibility == Visibility.Visible)) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void openFile()
