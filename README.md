@@ -17,6 +17,13 @@ You can download test program from web: https://github.com/MPrtenjak/SLOTax/rele
 
 ![Alt desc](https://raw.githubusercontent.com/MPrtenjak/SLOTax/master/git_resources/screen1.gif)
 
+###Za razvijalce / For developers
+
+Podrobna uporaba knjižnice je razložena na Wiki straneh (https://github.com/MPrtenjak/SLOTax/wiki/Explanation-Of-SloTaxService-API)
+
+Usage of SLOTaxService DLL is explained on wiki pages
+(https://github.com/MPrtenjak/SLOTax/wiki/Explanation-Of-SloTaxService-API)
+
 ##Kaj potrebujem za uporabo / What do I need to be able to use test program
 
 Za uporabo vladnih strežnikov potrebujete ustrezno digitalno potrdilo, ki ga lahko zahtevate na spletni strani: http://www.datoteke.fu.gov.si/dpr/index.html
