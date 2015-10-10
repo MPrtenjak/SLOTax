@@ -49,3 +49,21 @@ This program will:
 1. Get back Unique Identification Invoice Mark
 1. Calculate BarCode for QR code and Code128
 1. Draw QR Code
+
+##Zunanje knjižnice / External libraries
+
+* QRCode.NET (https://github.com/Alxandr/QrCode.Net)
+
+###Za razvijalce / For developers
+
+Sledeče knjižnice so potrebne samo v fazi razvoja / This external libraries are needed only when programming
+
+* NUnit (https://github.com/nunit/nunit)
+* StyleCop (https://github.com/StyleCop/StyleCop)
+
+###Posebna zahvala / Special thanks
+
+Nekaj programske kode potrebne za digitalni podpis je vzeto iz testnega programa, ki ga je objavil FURS: http://www.datoteke.fu.gov.si/dpr/files/example/BlagajneSample.zip
+
+Some code for digitally signing of documents are from test program released ba FURS: http://www.datoteke.fu.gov.si/dpr/files/example/BlagajneSample.zip
+
