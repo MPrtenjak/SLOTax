@@ -7,10 +7,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
+using System.Windows.Navigation;
 using System.Xml;
 using System.Xml.Linq;
 using MNet.SLOTaxService;
@@ -187,6 +189,12 @@ namespace MNet.SLOTaxGuiTest
     private void btnOpen_Click(object sender, RoutedEventArgs e)
     {
       this.openFile();
+    }
+
+    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+      Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+      e.Handled = true;
     }
     #endregion
   }
