@@ -1,0 +1,28 @@
+﻿<fu:BusinessPremiseRequest xmlns:fu="http://www.fu.gov.si/" Id="OK">
+  <fu:Header>
+    <fu:MessageID>4e64a93a-40fa-4c02-afb1-488534b85e4c</fu:MessageID>
+    <fu:DateTime>2015-07-17T09:30:47Z</fu:DateTime>
+  </fu:Header>
+  <fu:BusinessPremise>
+    <fu:TaxNumber>99999862</fu:TaxNumber>
+    <fu:BusinessPremiseID>36CF</fu:BusinessPremiseID>
+    <fu:BPIdentifier>
+      <fu:RealEstateBP>
+        <fu:Address>
+          <fu:Street>Dunajska cesta</fu:Street>
+          <fu:HouseNumber>24</fu:HouseNumber>
+          <fu:HouseNumberAdditional>B</fu:HouseNumberAdditional>
+          <fu:Community>Ljubljana</fu:Community>
+          <fu:City>Ljubljana</fu:City>
+          <fu:PostalCode>1000</fu:PostalCode>
+        </fu:Address>
+      </fu:RealEstateBP>
+    </fu:BPIdentifier>
+    <fu:ValidityDate>1990-08-25</fu:ValidityDate>
+    <fu:ClosingTag>Z</fu:ClosingTag>
+    <fu:SoftwareSupplier>
+      <fu:TaxNumber>24564444</fu:TaxNumber>
+    </fu:SoftwareSupplier>
+    <fu:SpecialNotes>Primer prijave poslovnega prostora</fu:SpecialNotes>
+  </fu:BusinessPremise>
+</fu:BusinessPremiseRequest>
