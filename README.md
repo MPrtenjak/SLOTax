@@ -1,2 +1,2 @@
 # SLOTax
-Davčne blagajne v Sloveniji
+Davčno potrjevanje računov /  Fiscal verification of invoices 
