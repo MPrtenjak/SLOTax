@@ -72,5 +72,5 @@ Sledeče knjižnice so potrebne samo v fazi razvoja / This external libraries ar
 
 Nekaj programske kode potrebne za digitalni podpis je vzeto iz testnega programa, ki ga je objavil FURS: http://www.datoteke.fu.gov.si/dpr/files/example/BlagajneSample.zip
 
-Some code for digitally signing of documents are from test program released ba FURS: http://www.datoteke.fu.gov.si/dpr/files/example/BlagajneSample.zip
+Some code used for digitally signing is taken from test program released by FURS: http://www.datoteke.fu.gov.si/dpr/files/example/BlagajneSample.zip
 
