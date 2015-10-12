@@ -75,6 +75,7 @@
     <Compile Include="TaxService.cs" />
     <Compile Include="UnitTests\NU_Base.cs" />
     <Compile Include="UnitTests\NU_Barcodes.cs" />
+    <Compile Include="UnitTests\NU_Modulo.cs" />
     <Compile Include="UnitTests\NU_SendEcho.cs" />
     <Compile Include="UnitTests\NU_SendBusinessPremise.cs" />
     <Compile Include="UnitTests\NU_SendInvoice.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Services\Certificate.cs" />
     <Compile Include="Services\ProtectiveMark.cs" />
     <Compile Include="Utils\BarCodesHelpers.cs" />
+    <Compile Include="Utils\IModulo.cs" />
+    <Compile Include="Utils\Modulo10_Easy.cs" />
+    <Compile Include="Utils\Modulo10_Luhn.cs" />
     <Compile Include="Utils\XmlHelperFunctions.cs" />
   </ItemGroup>
   <ItemGroup>

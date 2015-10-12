@@ -28,6 +28,8 @@ namespace MNet.SLOTaxService.Services
 
     private BarCodes(XmlDocument invoice)
     {
+      // People at FURS say that modulo is just easy modulo 10 and not luhn!
+      IModulo modulo = new Modulo10_Easy();
       this.invoice = invoice;
 
       XmlNode protectedIDNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:ProtectedID");
@@ -37,7 +39,7 @@ namespace MNet.SLOTaxService.Services
       if ((protectedIDNode == null) || (taxNumberNode == null) || (timeStampNode == null))
         this.BarCodeValue = string.Empty;
       else
-        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText));
+        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText), modulo);
     }
 
     private XmlDocument invoice;
