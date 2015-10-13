@@ -4,15 +4,11 @@
 // <author>Matjaz Prtenjak</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MNet.SLOTaxService.Modulo
 {
-  internal class Modulo10_Easy : IModulo 
+  internal class Modulo10_Easy : IModulo
   {
     public int CalculateModulo10(string value)
     {

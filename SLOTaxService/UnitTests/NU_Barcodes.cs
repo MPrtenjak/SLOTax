@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Text;
 using MNet.SLOTaxService.Modulo;
 using MNet.SLOTaxService.Utils;
 using NUnit.Framework;

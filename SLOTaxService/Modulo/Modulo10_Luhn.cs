@@ -4,11 +4,7 @@
 // <author>Matjaz Prtenjak</author>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MNet.SLOTaxService.Modulo;
 
 namespace MNet.SLOTaxService.Utils
@@ -53,9 +49,9 @@ namespace MNet.SLOTaxService.Utils
       }
 
       /*
-        1. Starting with the check digit double the value of every other digit 
+        1. Starting with the check digit double the value of every other digit
         2. If doubling of a number results in a two digits number, add up
-           the digits to get a single digit number. This will results in eight single digit numbers                    
+           the digits to get a single digit number. This will results in eight single digit numbers
         3. Get the sum of the digits
       */
       int sumOfDigits = value.Where((e) => e >= '0' && e <= '9')
@@ -64,7 +60,7 @@ namespace MNet.SLOTaxService.Utils
                       .Sum((e) => (e / 10) + (e % 10));
 
       //// If the final sum is divisible by 10, then the credit card number
-      //   is valid. If it is not divisible by 10, the number is invalid.            
+      //   is valid. If it is not divisible by 10, the number is invalid.
       return sumOfDigits % 10 == 0;
     }
   }

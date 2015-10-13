@@ -4,7 +4,6 @@
 // <author>Matjaz Prtenjak</author>
 //-----------------------------------------------------------------------
 
-using System;
 using System.Deployment.Internal.CodeSigning;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
