@@ -8,10 +8,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Xml;
 using MNet.SLOTaxService;
@@ -127,9 +130,23 @@ namespace MNet.SLOTaxGuiTest
       this.tbEOR.Text = rv.UniqueInvoiceID;
       this.tbZOI.Text = rv.ProtectedID;
       this.tbBarcode.Text = (rv.BarCodes != null) ? rv.BarCodes.BarCodeValue : string.Empty;
-      this.imgBarcode.Text = this.tbBarcode.Text;
+
+      // in xaml this is better option, but with rv.BarCodes.DrawQRCode, the usage case of the library is clearer
+      // this.imgBarcode.Text = this.tbBarcode.Text;
+
+      Image img = rv.BarCodes.DrawQRCode(180, ImageFormat.Png);
+      this.imgBarcode.Source = this.convertDrawingImageToWPFImage(img);
 
       this.showResults(rv);
+    }
+
+    private System.Windows.Media.ImageSource convertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
+    {
+      System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+
+      System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(gdiImg);
+      IntPtr hBitmap = bmp.GetHbitmap();
+      return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
     }
 
     private void showResults(ReturnValue rv)
