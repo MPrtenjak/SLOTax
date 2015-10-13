@@ -5,7 +5,12 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Xml;
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
 using MNet.SLOTaxService.Modulo;
 using MNet.SLOTaxService.Utils;
 
@@ -23,6 +28,20 @@ namespace MNet.SLOTaxService.Services
     public string[] GetBarCode128Lines(int noLines)
     {
       return BarCodesHelpers.SplitCode(this.BarCodeValue, noLines);
+    }
+
+    public Image DrawQRCode(int moduleSizeInPixels, ImageFormat imgFormat)
+    {
+      QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.M);
+      QrCode qrCode = qrEncoder.Encode(this.BarCodeValue);
+
+      GraphicsRenderer renderer = new GraphicsRenderer(new FixedModuleSize(moduleSizeInPixels, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+      using (MemoryStream stream = new MemoryStream())
+      {
+        renderer.WriteToStream(qrCode.Matrix, imgFormat, stream);
+
+        return Image.FromStream(stream);
+      }
     }
 
     private BarCodes(XmlDocument invoice)
