@@ -81,7 +81,7 @@
     <Compile Include="UnitTests\NU_SendInvoice.cs" />
     <Compile Include="UnitTests\NU_Certificate.cs" />
     <Compile Include="UnitTests\NU_ProtectiveMark.cs" />
-    <Compile Include="Services\Certificate.cs" />
+    <Compile Include="Services\Certificates.cs" />
     <Compile Include="Services\ProtectiveMark.cs" />
     <Compile Include="Utils\BarCodesHelpers.cs" />
     <Compile Include="Modulo\IModulo.cs" />

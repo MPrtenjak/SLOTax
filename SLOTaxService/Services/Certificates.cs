@@ -1,4 +1,4 @@
-﻿// <copyright file="Certificate.cs" company="MNet">
+﻿// <copyright file="Certificates.cs" company="MNet">
 //     Copyright (c) Matjaz Prtenjak All rights reserved.
 // </copyright>
 // <author>Matjaz Prtenjak</author>
@@ -11,7 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace MNet.SLOTaxService.Services
 {
-  public class Certificate
+  public class Certificates
   {
     public X509Certificate2 GetBySerialNumber(string serialNumber)
     {

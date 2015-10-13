@@ -41,7 +41,7 @@ namespace MNet.SLOTaxService.UnitTests
     {
       this.myTaxNumber = "10129014";
 
-      Certificate cert = new Certificate();
+      Certificates cert = new Certificates();
       X509Certificate2 certificate = cert.GetByTaxNumber(this.myTaxNumber);
 
       this.settings = Settings.CreateTestSettings(certificate);

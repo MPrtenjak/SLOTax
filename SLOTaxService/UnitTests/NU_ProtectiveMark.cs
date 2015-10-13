@@ -42,10 +42,10 @@ namespace MNet.SLOTaxService.UnitTests
       string appPath = new Uri(Path.GetDirectoryName(typeof(NU_Certificate).Assembly.EscapedCodeBase)).LocalPath;
       string fileCertPath = Path.Combine(appPath, @"UnitTests\resources\file.pfx");
 
-      Certificate cert = new Certificate();
+      Certificates cert = new Certificates();
       X509Certificate2 fileCert = cert.GetFromFile(fileCertPath, null);
 
-      RSACryptoServiceProvider provider = Certificate.getCryptoProvider(fileCert);
+      RSACryptoServiceProvider provider = Certificates.getCryptoProvider(fileCert);
 
       string input = @"test";
       string output = this.pm.Calculate(input, provider);

@@ -64,6 +64,6 @@ namespace MNet.SLOTaxService.UnitTests
       Assert.Throws<System.Exception>(() => this.certificate.GetBySerialNumber(serialNumber));
     }
 
-    private Certificate certificate = new Certificate();
+    private Certificates certificate = new Certificates();
   }
 }
