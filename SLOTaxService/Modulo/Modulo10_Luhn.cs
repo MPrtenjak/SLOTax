@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MNet.SLOTaxService.Modulo;
 
 namespace MNet.SLOTaxService.Utils
 {
-  internal class Modulo10_Luhn : IModulo 
+  internal class Modulo10_Luhn : IModulo
   {
     public int CalculateModulo10(string value)
     {

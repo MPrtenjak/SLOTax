@@ -84,9 +84,9 @@
     <Compile Include="Services\Certificate.cs" />
     <Compile Include="Services\ProtectiveMark.cs" />
     <Compile Include="Utils\BarCodesHelpers.cs" />
-    <Compile Include="Utils\IModulo.cs" />
-    <Compile Include="Utils\Modulo10_Easy.cs" />
-    <Compile Include="Utils\Modulo10_Luhn.cs" />
+    <Compile Include="Modulo\IModulo.cs" />
+    <Compile Include="Modulo\Modulo10_Easy.cs" />
+    <Compile Include="Modulo\Modulo10_Luhn.cs" />
     <Compile Include="Utils\XmlHelperFunctions.cs" />
   </ItemGroup>
   <ItemGroup>

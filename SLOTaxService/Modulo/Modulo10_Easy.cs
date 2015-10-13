@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MNet.SLOTaxService.Utils
+namespace MNet.SLOTaxService.Modulo
 {
   internal class Modulo10_Easy : IModulo 
   {

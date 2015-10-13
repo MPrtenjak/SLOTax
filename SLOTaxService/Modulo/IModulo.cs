@@ -10,8 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MNet.SLOTaxService.Utils
-{
+namespace MNet.SLOTaxService.Modulo
+  {
   internal interface IModulo
   {
     int CalculateModulo10(string value);
