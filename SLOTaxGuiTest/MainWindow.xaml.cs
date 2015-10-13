@@ -14,7 +14,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Xml;
-using System.Xml.Linq;
 using MNet.SLOTaxService;
 using MNet.SLOTaxService.Messages;
 using MNet.SLOTaxService.Services;
@@ -142,7 +141,7 @@ namespace MNet.SLOTaxGuiTest
       this.pnlBarcode.Visibility = ((rv == null) || (rv.BarCodes == null)) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlBarcode1.Visibility = this.pnlBarcode.Visibility;
 
-      this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) || 
+      this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) ||
                                    (this.pnlError.Visibility == Visibility.Visible) ||
                                    (this.pnlEOR.Visibility == Visibility.Visible) ||
                                    (this.pnlZOI.Visibility == Visibility.Visible) ||
@@ -165,6 +164,7 @@ namespace MNet.SLOTaxGuiTest
     }
 
     #region INotifyPropertyChanged Members
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void OnPropertyChanged(string propertyName)
@@ -173,9 +173,11 @@ namespace MNet.SLOTaxGuiTest
       if (handler != null)
         handler(this, new PropertyChangedEventArgs(propertyName));
     }
-    #endregion
+
+    #endregion INotifyPropertyChanged Members
 
     #region EventHandlers
+
     private void btnExampleClick(object sender, RoutedEventArgs e)
     {
       this.showExample(sender);
@@ -196,6 +198,7 @@ namespace MNet.SLOTaxGuiTest
       Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
       e.Handled = true;
     }
-    #endregion
+
+    #endregion EventHandlers
   }
 }
