@@ -30,12 +30,12 @@ namespace MNet.SLOTaxService.Services
       return BarCodesHelpers.SplitCode(this.BarCodeValue, noLines);
     }
 
-    public Image DrawQRCode(int moduleSizeInPixels, ImageFormat imgFormat)
+    public Image DrawQRCode(int qrImageSize, ImageFormat imgFormat)
     {
       QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.M);
       QrCode qrCode = qrEncoder.Encode(this.BarCodeValue);
 
-      GraphicsRenderer renderer = new GraphicsRenderer(new FixedModuleSize(moduleSizeInPixels, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+      GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(qrImageSize, QuietZoneModules.Two), Brushes.Black, Brushes.White);
       using (MemoryStream stream = new MemoryStream())
       {
         renderer.WriteToStream(qrCode.Matrix, imgFormat, stream);
