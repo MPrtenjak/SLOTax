@@ -80,7 +80,9 @@
 
             <DockPanel LastChildFill="True">
               <Border DockPanel.Dock="Right" Width="180" x:Name="pnlBarcode1" BorderBrush="{x:Null}" Padding="10">
-                <my:QrCodeImgControl x:Name="imgBarcode" Text="test" QuietZoneModule="two" IsGrayImage="True"/>
+                <!-- in XAML this is better option -->
+                <!--<my:QrCodeImgControl x:Name="imgBarcode" Text="test" QuietZoneModule="two" IsGrayImage="True"/>-->
+                <Image x:Name="imgBarcode"/>
               </Border>
 
               <StackPanel>

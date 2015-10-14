@@ -8,13 +8,15 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Xml;
-using System.Xml.Linq;
 using MNet.SLOTaxService;
 using MNet.SLOTaxService.Messages;
 using MNet.SLOTaxService.Services;
@@ -41,7 +43,7 @@ namespace MNet.SLOTaxGuiTest
       this.FursEndPoints.Add(new Tuple<string, string>("TEST / TEST (https://blagajne-test.fu.gov.si:9002/v1/cash_registers)", @"https://blagajne-test.fu.gov.si:9002/v1/cash_registers"));
       this.FursEndPoints.Add(new Tuple<string, string>("Produkcija / Production (https://blagajne.fu.gov.si:9003/v1/cash_registers)", @"https://blagajne.fu.gov.si:9003/v1/cash_registers"));
 
-      Certificate cert = new Certificate();
+      Certificates cert = new Certificates();
       this.Certificates = new ObservableCollection<X509Certificate2>();
       foreach (var certificate in cert.GetAllFursCertificates())
         this.Certificates.Add(certificate);
@@ -128,9 +130,23 @@ namespace MNet.SLOTaxGuiTest
       this.tbEOR.Text = rv.UniqueInvoiceID;
       this.tbZOI.Text = rv.ProtectedID;
       this.tbBarcode.Text = (rv.BarCodes != null) ? rv.BarCodes.BarCodeValue : string.Empty;
-      this.imgBarcode.Text = this.tbBarcode.Text;
+
+      //// in xaml this is better option, but with rv.BarCodes.DrawQRCode, the usage case of the library is clearer
+      //// this.imgBarcode.Text = this.tbBarcode.Text;
+
+      Image img = rv.BarCodes.DrawQRCode(180, ImageFormat.Png);
+      this.imgBarcode.Source = this.convertDrawingImageToWPFImage(img);
 
       this.showResults(rv);
+    }
+
+    private System.Windows.Media.ImageSource convertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
+    {
+      System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+
+      System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(gdiImg);
+      IntPtr hBitmap = bmp.GetHbitmap();
+      return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
     }
 
     private void showResults(ReturnValue rv)
@@ -142,7 +158,7 @@ namespace MNet.SLOTaxGuiTest
       this.pnlBarcode.Visibility = ((rv == null) || (rv.BarCodes == null)) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlBarcode1.Visibility = this.pnlBarcode.Visibility;
 
-      this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) || 
+      this.pnlResult.Visibility = ((this.pnlSuccess.Visibility == Visibility.Visible) ||
                                    (this.pnlError.Visibility == Visibility.Visible) ||
                                    (this.pnlEOR.Visibility == Visibility.Visible) ||
                                    (this.pnlZOI.Visibility == Visibility.Visible) ||
@@ -165,6 +181,7 @@ namespace MNet.SLOTaxGuiTest
     }
 
     #region INotifyPropertyChanged Members
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void OnPropertyChanged(string propertyName)
@@ -173,9 +190,11 @@ namespace MNet.SLOTaxGuiTest
       if (handler != null)
         handler(this, new PropertyChangedEventArgs(propertyName));
     }
-    #endregion
+
+    #endregion INotifyPropertyChanged Members
 
     #region EventHandlers
+
     private void btnExampleClick(object sender, RoutedEventArgs e)
     {
       this.showExample(sender);
@@ -196,6 +215,7 @@ namespace MNet.SLOTaxGuiTest
       Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
       e.Handled = true;
     }
-    #endregion
+
+    #endregion EventHandlers
   }
 }
