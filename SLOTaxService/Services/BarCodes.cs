@@ -5,9 +5,13 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Xml;
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
+using MNet.SLOTaxService.Modulo;
 using MNet.SLOTaxService.Utils;
 
 namespace MNet.SLOTaxService.Services
@@ -26,8 +30,24 @@ namespace MNet.SLOTaxService.Services
       return BarCodesHelpers.SplitCode(this.BarCodeValue, noLines);
     }
 
+    public Image DrawQRCode(int qrImageSize, ImageFormat imgFormat)
+    {
+      QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.M);
+      QrCode qrCode = qrEncoder.Encode(this.BarCodeValue);
+
+      GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(qrImageSize, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+      using (MemoryStream stream = new MemoryStream())
+      {
+        renderer.WriteToStream(qrCode.Matrix, imgFormat, stream);
+
+        return Image.FromStream(stream);
+      }
+    }
+
     private BarCodes(XmlDocument invoice)
     {
+      // People at FURS say that modulo is just easy modulo 10 and not luhn!
+      IModulo modulo = new Modulo10_Easy();
       this.invoice = invoice;
 
       XmlNode protectedIDNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:ProtectedID");
@@ -37,7 +57,7 @@ namespace MNet.SLOTaxService.Services
       if ((protectedIDNode == null) || (taxNumberNode == null) || (timeStampNode == null))
         this.BarCodeValue = string.Empty;
       else
-        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText));
+        this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText), modulo);
     }
 
     private XmlDocument invoice;
