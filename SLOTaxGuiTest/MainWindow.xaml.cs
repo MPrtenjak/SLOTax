@@ -129,13 +129,18 @@ namespace MNet.SLOTaxGuiTest
       this.tbError.Text = rv.ErrorMessage;
       this.tbEOR.Text = rv.UniqueInvoiceID;
       this.tbZOI.Text = rv.ProtectedID;
-      this.tbBarcode.Text = (rv.BarCodes != null) ? rv.BarCodes.BarCodeValue : string.Empty;
+      this.tbBarcode.Text = string.Empty;
 
-      //// in xaml this is better option, but with rv.BarCodes.DrawQRCode, the usage case of the library is clearer
-      //// this.imgBarcode.Text = this.tbBarcode.Text;
+      if (rv.BarCodes != null)
+      {
+        this.tbBarcode.Text = rv.BarCodes.BarCodeValue;
 
-      Image img = rv.BarCodes.DrawQRCode(180, ImageFormat.Png);
-      this.imgBarcode.Source = this.convertDrawingImageToWPFImage(img);
+        //// in xaml this is better option, but with rv.BarCodes.DrawQRCode, the usage case of the library is clearer
+        //// this.imgBarcode.Text = this.tbBarcode.Text;
+
+        Image img = rv.BarCodes.DrawQRCode(180, ImageFormat.Png);
+        this.imgBarcode.Source = this.convertDrawingImageToWPFImage(img);
+      }
 
       this.showResults(rv);
     }
