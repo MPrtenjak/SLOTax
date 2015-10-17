@@ -51,7 +51,7 @@ namespace MNet.SLOTaxService.Services
 
     public HttpWebRequest createWebRequest(XmlDocument message, MessageType messageType)
     {
-      HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("https://blagajne-test.fu.gov.si:9002/v1/cash_registers");
+      HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(this.settings.FursWebServiceURL);
 
       webRequest.Headers.Add(this.soapActions[messageType]);
       webRequest.ContentType = "text/xml; charset=UTF-8";
