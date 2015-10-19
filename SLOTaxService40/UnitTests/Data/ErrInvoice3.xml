@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<fu:InvoiceRequest xmlns:fu="http://www.fu.gov.si/" Id="OK1">
+  <fu:Header>
+    <fu:MessageID>4e64a93a-40fa-4c02-afb1-488534b85e4c</fu:MessageID>
+    <fu:DateTime>2015-08-07T13:05:24</fu:DateTime>
+  </fu:Header>
+  <fu:Invoice>
+    <fu:TaxNumber>99999862</fu:TaxNumber>
+    <fu:IssueDateTime>2015-08-07T13:05:24</fu:IssueDateTime>
+    <fu:NumberingStructure>B</fu:NumberingStructure>
+    <fu:InvoiceIdentifier>
+      <fu:BusinessPremiseID>TRGOVINA1</fu:BusinessPremiseID>
+      <fu:ElectronicDeviceID>BLAG2</fu:ElectronicDeviceID>
+      <fu:InvoiceNumber>145</fu:InvoiceNumber>
+    </fu:InvoiceIdentifier>
+    <fu:InvoiceAmount>66.71</fu:InvoiceAmount>
+    <fu:PaymentAmount>66.71</fu:PaymentAmount>
+  </fu:Invoice>
+</fu:InvoiceRequest>

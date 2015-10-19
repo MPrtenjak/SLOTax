@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxService", "SLOTaxServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxGuiTest", "SLOTaxGuiTest\SLOTaxGuiTest.csproj", "{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxService40", "SLOTaxService40\SLOTaxService40.csproj", "{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.NUnit|Any CPU.Build.0 = NUnit|Any CPU
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.NUnit|Any CPU.ActiveCfg = NUnit|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.NUnit|Any CPU.Build.0 = NUnit|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
