@@ -111,12 +111,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SLOTaxService\SLOTaxService.csproj">
-      <Project>{b2f0a646-91f9-4ddb-aadd-f7a8c1d97fd7}</Project>
-      <Name>SLOTaxService</Name>
+    <ProjectReference Include="..\SLOTaxService40\SLOTaxService40.csproj">
+      <Project>{37aee794-a2c5-44f8-aea4-8367bb2ab1f0}</Project>
+      <Name>SLOTaxService40</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\BusinessPremises.xml" />
   </ItemGroup>
