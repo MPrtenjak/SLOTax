@@ -59,7 +59,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\BarCodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Certificates.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ProtectiveMark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SignMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TaxService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Barcodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Base.cs" />

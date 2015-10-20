@@ -62,8 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Services\SendMessage.cs" />
-    <Compile Include="Services\SignMessage.cs" />
+    <Compile Include="Services\SetCryptoConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\SharedService\SharedService.projitems" Label="Shared" />

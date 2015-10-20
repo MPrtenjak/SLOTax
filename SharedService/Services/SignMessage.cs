@@ -26,7 +26,7 @@ namespace MNet.SLOTaxService.Services
       XmlNode mainNode = this.getMainNode(message, messageType);
       if (mainNode == null) return;
 
-      CryptoConfig.AddAlgorithm(typeof(RSAPKCS1SHA256SignatureDescription), "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256");
+      SetCryptoConfig.SetAlgorithm();
 
       SignedXml signedXml = new SignedXml(message);
       signedXml.SigningKey = this.settings.CryptoProvider;
