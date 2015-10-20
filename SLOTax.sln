@@ -13,10 +13,15 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedService", "SharedServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxGuiTest40", "SLOTaxGuiTest40\SLOTaxGuiTest40.csproj", "{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedGUI", "ShareGUI\SharedGUI.shproj", "{8FAE0C17-9F19-430D-A742-AD14AFE0FCDE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ShareGUI\ShareGUI.projitems*{8fae0c17-9f19-430d-a742-ad14afe0fcde}*SharedItemsImports = 13
+		ShareGUI\ShareGUI.projitems*{f27df764-b9f0-45aa-80be-8f7a6e88363d}*SharedItemsImports = 4
 		SharedService\SharedService.projitems*{b2f0a646-91f9-4ddb-aadd-f7a8c1d97fd7}*SharedItemsImports = 4
 		SharedService\SharedService.projitems*{f9108a90-f742-4c41-8b9c-f4f401b39000}*SharedItemsImports = 13
+		ShareGUI\ShareGUI.projitems*{bbfe6edd-e97c-4dcc-8c45-5b143e4731aa}*SharedItemsImports = 4
 		SharedService\SharedService.projitems*{37aee794-a2c5-44f8-aea4-8367bb2ab1f0}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

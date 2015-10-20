@@ -116,15 +116,7 @@
       <Name>SLOTaxService40</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BusinessPremises.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Echo.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Invoice.xml" />
-  </ItemGroup>
+  <Import Project="..\ShareGUI\ShareGUI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\common_reference\StyleCop\Build\StyleCop.MSBuild.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
