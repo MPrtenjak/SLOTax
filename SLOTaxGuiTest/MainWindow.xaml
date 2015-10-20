@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MNet.SLOTaxGuiTest"
         xmlns:my="clr-namespace:Gma.QrCodeNet.Encoding.Windows.WPF;assembly=Gma.QrCodeNet.Encoding"
         mc:Ignorable="d"
-        Title="SLO Davčno potrjevanje računov / SLO Fiscal verification of invoices" Height="650" Width="1000">
+        Title="SLO Davčno potrjevanje računov / SLO Fiscal verification of invoices" Height="750" Width="1000">
   <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
 
   <Border BorderBrush="{x:Null}" Padding="10,10,10,0" Background="#FFC8DBEC">
