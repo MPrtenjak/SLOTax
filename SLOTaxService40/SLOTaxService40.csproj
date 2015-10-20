@@ -61,81 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages\Echo.cs" />
-    <Compile Include="Messages\IMessage.cs" />
-    <Compile Include="Messages\BaseMessage.cs" />
-    <Compile Include="Messages\BusinessPremise.cs" />
-    <Compile Include="Messages\Invoice.cs" />
-    <Compile Include="Messages\ReturnValue.cs" />
-    <Compile Include="ITaxServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Services\BarCodes.cs" />
     <Compile Include="Services\SendMessage.cs" />
-    <Compile Include="Services\Settings.cs" />
     <Compile Include="Services\SignMessage.cs" />
-    <Compile Include="TaxService.cs" />
-    <Compile Include="UnitTests\NU_Base.cs" />
-    <Compile Include="UnitTests\NU_Barcodes.cs" />
-    <Compile Include="UnitTests\NU_Modulo.cs" />
-    <Compile Include="UnitTests\NU_SendEcho.cs" />
-    <Compile Include="UnitTests\NU_SendBusinessPremise.cs" />
-    <Compile Include="UnitTests\NU_SendInvoice.cs" />
-    <Compile Include="UnitTests\NU_Certificate.cs" />
-    <Compile Include="UnitTests\NU_ProtectiveMark.cs" />
-    <Compile Include="Services\Certificates.cs" />
-    <Compile Include="Services\ProtectiveMark.cs" />
-    <Compile Include="Utils\BarCodesHelpers.cs" />
-    <Compile Include="Modulo\IModulo.cs" />
-    <Compile Include="Modulo\Modulo10_Easy.cs" />
-    <Compile Include="Modulo\Modulo10_Luhn.cs" />
-    <Compile Include="Utils\XmlHelperFunctions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="UnitTests\Resources\file.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="UnitTests\Resources\file.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="UnitTests\Resources\inStore.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <EmbeddedResource Include="Resources\FiscalVerificationSchema.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\xmldsig-core-schema.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="UnitTests\Data\ErrInvoice3.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\ErrInvoice2.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\ErrInvoice1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\ErrBusinessPremise.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\OKBusinessPremise.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\OKInvoice3.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\OKInvoice2.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UnitTests\Data\OKInvoice1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
+  <Import Project="..\SharedService\SharedService.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\common_reference\StyleCop\Build\StyleCop.MSBuild.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
