@@ -112,7 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SLOTaxService40\SLOTaxService40.csproj">
-      <Project>{37aee794-a2c5-44f8-aea4-8367bb2ab1f0}</Project>
+      <Project>{084e1078-a316-4654-ac41-99e06170c07f}</Project>
       <Name>SLOTaxService40</Name>
     </ProjectReference>
   </ItemGroup>
