@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f9108a90-f742-4c41-8b9c-f4f401b39000</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedService</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\ErrBusinessPremise.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\ErrInvoice1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\ErrInvoice2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\ErrInvoice3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKBusinessPremise.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)UnitTests\Resources\file.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)UnitTests\Resources\file.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)UnitTests\Resources\inStore.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ITaxServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\BaseMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\BusinessPremise.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\Echo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\IMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\Invoice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\ReturnValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modulo\IModulo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modulo\Modulo10_Easy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modulo\Modulo10_Luhn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BarCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Certificates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ProtectiveMark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaxService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Barcodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Base.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Certificate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_Modulo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_ProtectiveMark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_SendBusinessPremise.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_SendEcho.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\NU_SendInvoice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\BarCodesHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\XmlHelperFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\FiscalVerificationSchema.xsd" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\xmldsig-core-schema.xsd" />
+  </ItemGroup>
+</Project>
