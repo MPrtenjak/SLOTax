@@ -61,6 +61,9 @@ This program will:
 
 * QRCode.NET (https://github.com/Alxandr/QrCode.Net)
 
+Za .NET 4.0 projekt (WinXP) / For .NET 4.0 project (WinXP)
+* Security.Cryptography (https://clrsecurity.codeplex.com/)
+
 ###Za razvijalce / For developers
 
 Sledeče knjižnice so potrebne samo v fazi razvoja / This external libraries are needed only when programming
