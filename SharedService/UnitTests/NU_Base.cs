@@ -15,6 +15,8 @@ namespace MNet.SLOTaxService.UnitTests
 {
   internal class NU_Base
   {
+    public static string MyTaxNumber { get { return "10129014"; } }
+
     protected string getFullFileName(string fileName)
     {
       string appPath = new Uri(Path.GetDirectoryName(typeof(NU_Certificate).Assembly.EscapedCodeBase)).LocalPath;
@@ -32,23 +34,20 @@ namespace MNet.SLOTaxService.UnitTests
 
       // It is important to set the tax number to match the one that is in certificate or else FURS will not proceed messages
       XmlNode nodeTaxNumber = xml.GetElementsByTagName("fu:TaxNumber")[0];
-      if (nodeTaxNumber != null) nodeTaxNumber.InnerText = this.myTaxNumber;
+      if (nodeTaxNumber != null) nodeTaxNumber.InnerText = MyTaxNumber;
 
       return xml;
     }
 
     protected NU_Base()
     {
-      this.myTaxNumber = "10129014";
-
       Certificates cert = new Certificates();
-      X509Certificate2 certificate = cert.GetByTaxNumber(this.myTaxNumber);
+      X509Certificate2 certificate = cert.GetByTaxNumber(MyTaxNumber);
 
       this.settings = Settings.CreateTestSettings(certificate);
       this.taxService = TaxService.Create(this.settings);
     }
 
-    protected string myTaxNumber { get; set; }
     protected Settings settings { get; set; }
     protected TaxService taxService { get; set; }
   }

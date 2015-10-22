@@ -4,10 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MNet.SLOTaxGuiTest"
-        xmlns:my="clr-namespace:Gma.QrCodeNet.Encoding.Windows.WPF;assembly=Gma.QrCodeNet.Encoding"
         mc:Ignorable="d"
         Title="SLO Davčno potrjevanje računov / SLO Fiscal verification of invoices" Height="750" Width="1000">
-  <!-- http://www.codeguru.com/csharp/csharp/cs_misc/security/article.php/c16491/Working-with-Digital-Certificates-in-NET.htm -->
 
   <Border BorderBrush="{x:Null}" Padding="10,10,10,0" Background="#FFC8DBEC">
     <Grid>
@@ -56,7 +54,7 @@
               <Button x:Name="btnBusinessPremises" Content=" Poslovni prostor / Business Premises " MinHeight="30" Click="btnExampleClick"/>
             </WrapPanel>
           </StackPanel>
-          <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+          <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True"/>
         </DockPanel>
       </DockPanel>
 
@@ -79,7 +77,7 @@
             </Border>
 
             <DockPanel LastChildFill="True">
-              <Border DockPanel.Dock="Right" Width="300" x:Name="pnlBarcode1" BorderBrush="{x:Null}" Padding="10">
+              <Border DockPanel.Dock="Right" Width="180" x:Name="pnlBarcode1" BorderBrush="{x:Null}" Padding="10">
                 <!-- in XAML this is better option -->
                 <!--<my:QrCodeImgControl x:Name="imgBarcode" Text="test" QuietZoneModule="two" IsGrayImage="True"/>-->
                 <Image x:Name="imgBarcode"/>
