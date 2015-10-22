@@ -54,7 +54,7 @@
               <Button x:Name="btnBusinessPremises" Content=" Poslovni prostor / Business Premises " MinHeight="30" Click="btnExampleClick"/>
             </WrapPanel>
           </StackPanel>
-          <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+          <TextBox x:Name="tbInput" FontFamily="Courier New" FontWeight="Bold"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True"/>
         </DockPanel>
       </DockPanel>
 
