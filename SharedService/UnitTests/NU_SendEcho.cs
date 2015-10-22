@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 
 using MNet.SLOTaxService.Messages;
+using MNet.SLOTaxService.Services;
 using NUnit.Framework;
 
 namespace MNet.SLOTaxService.UnitTests
@@ -35,6 +36,24 @@ namespace MNet.SLOTaxService.UnitTests
       Assert.False(rv.Success);
       Assert.IsNotNull(rv.MessageSendToFurs);
       Assert.IsNull(rv.MessageReceivedFromFurs);
+      Assert.IsNullOrEmpty(rv.ProtectedID);
+      Assert.IsNullOrEmpty(rv.UniqueInvoiceID);
+    }
+
+    [Test]
+    public void SendWholeTest()
+    {
+      var certificateHelper = new Certificates();
+      var certificate = certificateHelper.GetByTaxNumber(MyTaxNumber);
+      var settings = Settings.CreateTestSettings(certificate);
+      var ts = TaxService.Create(settings);
+
+      ReturnValue rv = ts.SendEcho("This is echo message");
+      Assert.IsNullOrEmpty(rv.ErrorMessage);
+      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
+      Assert.True(rv.Success);
+      Assert.IsNotNull(rv.MessageSendToFurs);
+      Assert.IsNotNull(rv.MessageReceivedFromFurs);
       Assert.IsNullOrEmpty(rv.ProtectedID);
       Assert.IsNullOrEmpty(rv.UniqueInvoiceID);
     }
