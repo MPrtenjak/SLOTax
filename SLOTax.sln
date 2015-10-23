@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxGuiTest40", "SLOTaxGu
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedGUI", "ShareGUI\SharedGUI.shproj", "{8FAE0C17-9F19-430D-A742-AD14AFE0FCDE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F564AA18-C05F-4044-8241-58282E142E77}"
+	ProjectSection(SolutionItems) = preProject
+		VersionInfo.cs = VersionInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ShareGUI\ShareGUI.projitems*{8fae0c17-9f19-430d-a742-ad14afe0fcde}*SharedItemsImports = 13
