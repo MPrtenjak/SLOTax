@@ -37,11 +37,13 @@ namespace MNet.SLOTaxService.Messages
       return new ReturnValue(step, msg, errorMsg);
     }
 
+    public MessageType MessageType { get; private set; }
     public SendingStep Step { get; private set; }
     public XmlDocument MessageSendToFurs { get; private set; }
     public XmlDocument MessageReceivedFromFurs { get; private set; }
     public bool Success { get; private set; }
     public string ErrorMessage { get; private set; }
+    public ErrorMessageSource ErrorMessageSource { get; private set; }
     public string ProtectedID { get; private set; }
     public string UniqueInvoiceID { get; private set; }
     public BarCodes BarCodes { get; private set; }
@@ -54,11 +56,12 @@ namespace MNet.SLOTaxService.Messages
       {
         this.Success = false;
         this.ErrorMessage = errorMessage;
-        this.messageType = MessageType.Unknown;
+        this.MessageType = MessageType.Unknown;
+        this.ErrorMessageSource = ErrorMessageSource.System;
         return;
       }
 
-      this.messageType = message.MessageType;
+      this.MessageType = message.MessageType;
       this.originalMessage = message.Message;
       this.MessageSendToFurs = (step >= SendingStep.SoapEnvelopeGenerated) ? message.MessageSendToFurs : null;
       this.MessageReceivedFromFurs = (step >= SendingStep.MessageSend) ? message.MessageReceivedFromFurs : null;
@@ -67,6 +70,7 @@ namespace MNet.SLOTaxService.Messages
       {
         this.Success = false;
         this.ErrorMessage = errorMessage;
+        this.ErrorMessageSource = ErrorMessageSource.System;
         return;
       }
 
@@ -92,6 +96,7 @@ namespace MNet.SLOTaxService.Messages
       {
         this.Success = false;
         this.ErrorMessage = "Unknown error";
+        this.ErrorMessageSource = ErrorMessageSource.System;
       }
 
       XmlNode errMsgNode = XmlHelperFunctions.GetSubNode(this.MessageReceivedFromFurs.DocumentElement, "fu:ErrorMessage");
@@ -101,6 +106,7 @@ namespace MNet.SLOTaxService.Messages
         this.Success = false;
         string id = (errMsgCodeNode == null) ? string.Empty : string.Format("[{0}]: ", errMsgCodeNode.InnerText);
         this.ErrorMessage = id + errMsgNode.InnerText;
+        this.ErrorMessageSource = ErrorMessageSource.Furs;
       }
 
       XmlNode uniqueInvoiceIDNode = XmlHelperFunctions.GetSubNode(this.MessageReceivedFromFurs.DocumentElement, "fu:UniqueInvoiceID");
@@ -115,7 +121,6 @@ namespace MNet.SLOTaxService.Messages
       this.BarCodes = (id == null) ? null : BarCodes.Create(checkedDocument);
     }
 
-    private MessageType messageType;
     private XmlDocument originalMessage;
   }
 }
