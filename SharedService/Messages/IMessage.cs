@@ -8,12 +8,19 @@ using System.Xml;
 
 namespace MNet.SLOTaxService.Messages
 {
-  internal enum MessageType
+  public enum MessageType
   {
     Invoice,
     BusinessPremise,
     Echo,
     Unknown,
+  }
+
+  public enum ErrorMessageSource
+  {
+    None,
+    Furs,
+    System,
   }
 
   internal enum MessageAction
