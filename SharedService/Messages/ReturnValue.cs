@@ -20,7 +20,7 @@ namespace MNet.SLOTaxService.Messages
     MessageSend,
   }
 
-  public class ReturnValue
+  public class ReturnValue : IReturnValue
   {
     internal static ReturnValue ProtectiveMarkCalculated(SendingStep step, IMessage message)
     {
