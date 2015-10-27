@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Echo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\IMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Invoice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Messages\IReturnValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\ReturnValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modulo\IModulo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modulo\Modulo10_Easy.cs" />
