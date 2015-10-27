@@ -72,6 +72,11 @@ namespace MNet.SLOTaxService.Services
       cspParameters.KeyContainerName = privateKey.CspKeyContainerInfo.KeyContainerName;
       cspParameters.KeyNumber = (privateKey.CspKeyContainerInfo.KeyNumber == KeyNumber.Exchange) ? 1 : 2;
 
+      if (privateKey.CspKeyContainerInfo.MachineKeyStore)
+        cspParameters.Flags |= CspProviderFlags.UseMachineKeyStore;
+      else
+        cspParameters.Flags &= (~CspProviderFlags.UseMachineKeyStore);
+
       return new RSACryptoServiceProvider(cspParameters);
     }
 
