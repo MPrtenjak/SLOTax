@@ -36,12 +36,9 @@ namespace MNet.SLOTaxService.Services
       QrCode qrCode = qrEncoder.Encode(this.BarCodeValue);
 
       GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(qrImageSize, QuietZoneModules.Two), Brushes.Black, Brushes.White);
-      using (MemoryStream stream = new MemoryStream())
-      {
-        renderer.WriteToStream(qrCode.Matrix, imgFormat, stream);
-
-        return Image.FromStream(stream);
-      }
+      MemoryStream stream = new MemoryStream();
+      renderer.WriteToStream(qrCode.Matrix, imgFormat, stream);
+      return Image.FromStream(stream);
     }
 
     private BarCodes(XmlDocument invoice)
