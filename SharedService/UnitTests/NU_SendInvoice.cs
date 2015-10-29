@@ -115,16 +115,28 @@ namespace MNet.SLOTaxService.UnitTests
     public void CalculateProtectedMarkERR()
     {
       XmlDocument xmlDoc = this.getXml("ErrInvoice1.xml");
-      string pm = this.taxService.CalculateProtectiveMark(xmlDoc);
-      Assert.IsNullOrEmpty(pm);
+      ReturnValue rv = this.taxService.CalculateProtectiveMark(xmlDoc);
+      Assert.IsNotNullOrEmpty(rv.ErrorMessage);
+      Assert.AreEqual(rv.Step, SendingStep.MessageReceived);
+      Assert.False(rv.Success);
+      Assert.IsNull(rv.MessageSendToFurs);
+      Assert.IsNull(rv.MessageReceivedFromFurs);
+      Assert.IsNullOrEmpty(rv.ProtectedID);
+      Assert.IsNullOrEmpty(rv.UniqueInvoiceID);
     }
 
     [Test]
     public void CalculateProtectedMarkOK()
     {
       XmlDocument xmlDoc = this.getXml("OkInvoice1.xml");
-      string pm = this.taxService.CalculateProtectiveMark(xmlDoc);
-      Assert.IsNotNullOrEmpty(pm);
+      ReturnValue rv = this.taxService.CalculateProtectiveMark(xmlDoc);
+      Assert.IsNullOrEmpty(rv.ErrorMessage);
+      Assert.AreEqual(rv.Step, SendingStep.MessageChecked);
+      Assert.True(rv.Success);
+      Assert.IsNull(rv.MessageSendToFurs);
+      Assert.IsNull(rv.MessageReceivedFromFurs);
+      Assert.IsNotNullOrEmpty(rv.ProtectedID);
+      Assert.IsNullOrEmpty(rv.UniqueInvoiceID);
     }
   }
 }

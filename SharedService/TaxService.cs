@@ -20,10 +20,9 @@ namespace MNet.SLOTaxService
 
     public Settings Settings { get; private set; }
 
-    public string CalculateProtectiveMark(XmlDocument message)
+    public ReturnValue CalculateProtectiveMark(XmlDocument message)
     {
-      ReturnValue rv = this.execute(Invoice.Create(message, this.Settings, MessageAction.Calculate));
-      return (rv.Success) ? rv.ProtectedID : null;
+      return this.execute(Invoice.Create(message, this.Settings, MessageAction.Calculate));
     }
 
     public ReturnValue Send(string message)

@@ -14,7 +14,7 @@ namespace MNet.SLOTaxService
   {
     Settings Settings { get; }
 
-    string CalculateProtectiveMark(XmlDocument message);
+    ReturnValue CalculateProtectiveMark(XmlDocument message);
 
     ReturnValue Send(string message);
 
