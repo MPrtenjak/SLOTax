@@ -23,6 +23,16 @@ namespace MNet.SLOTaxService.Services
       return new BarCodes(invoice);
     }
 
+    public static BarCodes Create(string protectedIDHex, string taxNumber, DateTime timeStamp)
+    {
+      return new BarCodes(protectedIDHex, taxNumber, timeStamp);
+    }
+
+    public static BarCodes Create(string barCodeValue)
+    {
+      return new BarCodes(barCodeValue);
+    }
+
     public string BarCodeValue { get; private set; }
 
     public string[] GetBarCode128Lines(int noLines)
@@ -47,14 +57,27 @@ namespace MNet.SLOTaxService.Services
       IModulo modulo = new Modulo10_Easy();
       this.invoice = invoice;
 
+      // TaxNumber is the TaxNumber of the person creating invoice, but if the person is foreigner then tax number is not required!
+      XmlNode taxNumberNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:OperatorTaxNumber");
+      if (taxNumberNode == null) taxNumberNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:TaxNumber");
       XmlNode protectedIDNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:ProtectedID");
-      XmlNode taxNumberNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:TaxNumber");
       XmlNode timeStampNode = XmlHelperFunctions.GetSubNode(invoice.DocumentElement, "fu:IssueDateTime");
 
       if ((protectedIDNode == null) || (taxNumberNode == null) || (timeStampNode == null))
         this.BarCodeValue = string.Empty;
       else
         this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDNode.InnerText, taxNumberNode.InnerText, Convert.ToDateTime(timeStampNode.InnerText), modulo);
+    }
+
+    private BarCodes(string protectedIDHex, string taxNumber, DateTime timeStamp)
+    {
+      IModulo modulo = new Modulo10_Easy();
+      this.BarCodeValue = BarCodesHelpers.GenerateCode(protectedIDHex, taxNumber, timeStamp, modulo);
+    }
+
+    private BarCodes(string barCodeValue)
+    {
+      this.BarCodeValue = barCodeValue;
     }
 
     private XmlDocument invoice;
