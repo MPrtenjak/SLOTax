@@ -112,6 +112,20 @@ namespace MNet.SLOTaxService.UnitTests
     }
 
     [Test]
+    public void SendOKXmlDocument4()
+    {
+      XmlDocument xmlDoc = this.getXml("OKInvoice4.xml");
+      ReturnValue rv = this.taxService.SendInvoice(xmlDoc);
+      Assert.IsNullOrEmpty(rv.ErrorMessage);
+      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
+      Assert.True(rv.Success);
+      Assert.IsNotNull(rv.MessageSendToFurs);
+      Assert.IsNotNull(rv.MessageReceivedFromFurs);
+      Assert.IsNotNullOrEmpty(rv.ProtectedID);
+      Assert.IsNotNullOrEmpty(rv.UniqueInvoiceID);
+    }
+
+    [Test]
     public void CalculateProtectedMarkERR()
     {
       XmlDocument xmlDoc = this.getXml("ErrInvoice1.xml");

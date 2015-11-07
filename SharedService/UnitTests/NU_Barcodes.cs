@@ -5,13 +5,15 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Xml;
 using MNet.SLOTaxService.Modulo;
+using MNet.SLOTaxService.Services;
 using MNet.SLOTaxService.Utils;
 using NUnit.Framework;
 
 namespace MNet.SLOTaxService.UnitTests
 {
-  internal class NU_Barcodes
+  internal class NU_Barcodes : NU_Base 
   {
     [Test]
     public void ConvertHex2DecTest()
@@ -130,6 +132,32 @@ namespace MNet.SLOTaxService.UnitTests
       StringAssert.AreEqualIgnoringCase(lines[3], "449731667551");
       StringAssert.AreEqualIgnoringCase(lines[4], "452345678150");
       StringAssert.AreEqualIgnoringCase(lines[5], "468151013321");
+    }
+
+    [Test]
+    public void testInvoice1()
+    {
+      XmlDocument xmlDoc = this.getXml("OKInvoice3.xml");
+      BarCodes bc = BarCodes.Create(xmlDoc);
+
+      Assert.AreEqual(bc.BarCodeValue, "069869408702625034879475616534770898107101290141508071305245");
+
+      string xmlTaxNumber = XmlHelperFunctions.GetSubNode(xmlDoc.DocumentElement, "fu:TaxNumber").InnerText;
+      string codeTaxNumber = bc.BarCodeValue.Substring(39, 8);
+      Assert.AreEqual(xmlTaxNumber, codeTaxNumber);
+    }
+
+    [Test]
+    public void testInvoice2()
+    {
+      XmlDocument xmlDoc = this.getXml("OKInvoice4.xml");
+      BarCodes bc = BarCodes.Create(xmlDoc);
+
+      Assert.AreEqual(bc.BarCodeValue, "069869408702625034879475616534770898107123456781508071305243");
+
+      string xmlTaxNumber = XmlHelperFunctions.GetSubNode(xmlDoc.DocumentElement, "fu:OperatorTaxNumber").InnerText;
+      string codeTaxNumber = bc.BarCodeValue.Substring(39, 8);
+      Assert.AreEqual(xmlTaxNumber, codeTaxNumber);
     }
   }
 }

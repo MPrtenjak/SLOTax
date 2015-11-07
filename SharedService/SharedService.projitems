@@ -30,6 +30,9 @@
     <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice4.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)UnitTests\Data\OKInvoice3.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

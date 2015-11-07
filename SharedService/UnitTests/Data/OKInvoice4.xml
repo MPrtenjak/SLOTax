@@ -23,6 +23,7 @@
         <fu:TaxAmount>3.34</fu:TaxAmount>
       </fu:VAT>
     </fu:TaxesPerSeller>
+    <fu:OperatorTaxNumber>12345678</fu:OperatorTaxNumber>
     <fu:ProtectedID>34905bcff14b381039af2e9d7eee54bb</fu:ProtectedID>
   </fu:Invoice>
 </fu:InvoiceRequest>
