@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2013 sp1 (http://www.altova.com) by ﻿m (m) -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" 
-        xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
-        xmlns:fu="http://www.fu.gov.si/" 
-        targetNamespace="http://www.fu.gov.si/" 
-        elementFormDefault="qualified">
-  <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="file://D:/razvoj/DotNET/SLOTaxService/Schemas/xmldsig-core-schema.xsd"/>
-  <element name="InvoiceRequest">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:fu="http://www.fu.gov.si/" targetNamespace="http://www.fu.gov.si/" elementFormDefault="qualified">
+	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+	<element name="InvoiceRequest">
 		<annotation>
 			<documentation>Vsebina in oblika sporočila s podatki o računu. / Content and form of the message with data about the invoice.</documentation>
 		</annotation>
@@ -51,8 +45,8 @@
 						<documentation>Enkratni identifikator sporočila. / Unique identifier of the message.</documentation>
 					</annotation>
 				</element>
-				<element ref="ds:Signature" minOccurs="0"/>
 				<element name="Error" type="fu:ErrorType" minOccurs="0"/>
+				<element ref="ds:Signature" minOccurs="0"/>
 			</sequence>
 			<attribute name="Id" type="string">
 				<annotation>
@@ -115,7 +109,7 @@
 					<documentation>Vpišejo se podatki o nepremičnem ali premičnem poslovnem prostoru. / Data are entered about immovable or movable business premises.</documentation>
 				</annotation>
 			</element>
-			<element name="ValidityDate" type="xs:date">
+			<element name="ValidityDate" type="fu:date">
 				<annotation>
 					<documentation>Datum začetka veljavnosti podatkov o poslovnem prostoru, ki se posredujejo. Podatek se vpiše v obliki: LLLL-MM-DD. / The date when data about business premises, which are submitted, become valid. DD / The data is entered in the following form: YYYY-MM-DD.</documentation>
 				</annotation>
@@ -153,7 +147,7 @@
 					<documentation>Vpiše se davčna številka zavezanca, ki je izdal račun. / The tax number of the person liable, who has issued the invoice, is entered.</documentation>
 				</annotation>
 			</element>
-			<element name="IssueDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+			<element name="IssueDateTime" type="fu:dateTime" minOccurs="1" maxOccurs="1">
 				<annotation>
 					<documentation>Vpiše se datum in čas izdaje računa, ki je naveden na računu. Podatek se vpiše v formatu LLLL-MM-DDTUU:MM:SS. / Date and time of issuing the invoice, which is stated on the invoice, are entered. The data is entered in the following format YYYY-MM-DDTHH:MM:SS.
 </documentation>
@@ -230,7 +224,7 @@
 								<documentation>Vpiše se številka prvotnega računa v primeru naknadne spremembe podatkov na prvotnem računu, če je bil prvoten račun izdan preko elektronske naprave. Zavezanec izvaja postopek potrjevanja računov tudi za vse naknadne spremembe podatkov na računu, ki spreminjajo prvoten račun in se nanj nedvoumno nanašajo. Podatek se vpiše v primeru, če se z računom, izdanim preko elektronske naprave, spreminja prvoten račun, ki je bil izdan preko elektronske naprave. Za vpis številke računa, ki se spreminja, veljajo enaka pravila kot pri vpisu številke računa. Številka računa je sestavljena iz treh delov: oznaka poslovnega prostora, oznaka elektronske naprave za izdajanje računov, zaporedna številka računa. Številka računa se na računu navede v naslednji obliki: oznaka poslovnega prostora-oznaka elektronske naprave-zaporedna številka računa Primer: TRGOVINA1-BLAG2-1234 Podatki se vpisujejo ločeno. / The number of the original invoice is entered in cases of subsequent changes of data on the original invoice if the original invoice has been issued via the electronic device. The person liable conducts the procedure for verification of invoices also for all subsequent changes of data on the invoice, which change the original invoice and they refer to it with reasonable certainty. The data is entered in cases if the original invoice, which has been issued via the electronic device, changes with the invoice, issued via the electronic device. Rules for entry of the invoice number, which is changed, are the same as those for entry of the invoice number. The invoice number includes three parts: mark of business premises; mark of the electronic device for issuing invoices; sequence number of the invoice. The invoice number is stated on the invoice in the following form: mark of business premises-mark of the electronic device- sequence invoice number. Example: TRGOVINA1-BLAG2-1234. Data are entered separately.</documentation>
 							</annotation>
 						</element>
-						<element name="ReferenceInvoiceIssueDateTime" type="dateTime">
+						<element name="ReferenceInvoiceIssueDateTime" type="fu:dateTime">
 							<annotation>
 								<documentation>Vpiše se datum in čas izdaje prvotnega računa v primeru naknadne spremembe podatkov na prvotnem računu, če je bil prvoten račun izdan preko elektronske naprave. Podatek se vpiše v primeru, če se z računom, izdanim preko elektronske naprave, spreminja prvoten račun, ki je bil izdan preko elektronske naprave. Podatek se vpiše v formatu LLLL-MM-DDTUU:MM:SS. / Date and time are entered of issuing the original invoice in cases of subsequent changes of data on the original invoice if the original invoice has been issued via the electronic device. The data is entered in cases if the original invoice, which has been issued via the electronic device, is changed with the invoice, issued via the electronic device. The data is entered in the following format YYYY-MM-DDTHH:MM:SS.</documentation>
 							</annotation>
@@ -280,7 +274,7 @@
 					<documentation>Vpiše se davčna številka zavezanca, ki je izdal račun. / The tax number of the person liable, who has issued the invoice, is entered.</documentation>
 				</annotation>
 			</element>
-			<element name="IssueDate" type="xs:date" minOccurs="1" maxOccurs="1">
+			<element name="IssueDate" type="fu:date" minOccurs="1" maxOccurs="1">
 				<annotation>
 					<documentation>Vpiše se datum izdaje računa, ki je naveden na računu. Podatek se vpiše v formatu LLLL-MM-DD. / The date of issuing the invoice, which is stated on the invoice, is entered. The data is entered in the following format: YYYY-MM-DD.</documentation>
 				</annotation>
@@ -351,7 +345,7 @@
 								<documentation>Vpiše se številka prvotnega računa v primeru naknadne spremembe podatkov na prvotnem računu, če je bil prvoten račun izdan preko elektronske naprave. Podatek se vpiše v primeru, če se z računom, izdanim iz vezane knjige računov, spreminja prvoten račun, ki je bil izdan preko elektronske naprave. Za vpis številke računa, ki se spreminja, veljajo enaka pravila kot pri vpisu številke računa. Številka računa je sestavljena iz treh delov: oznaka poslovnega prostora, oznaka elektronske naprave za izdajanje računov, zaporedna številka računa  Številka računa se na računu navede v naslednji obliki: oznaka poslovnega prostora-oznaka elektronske naprave-zaporedna številka računa. Primer: TRGOVINA1-BLAG2-1234. Podatki se vpisujejo ločeno. / The number is entered of the original invoice in cases of subsequent changes of data on the original invoice if the original invoice has been issued via the electronic device. The data is entered in cases when the original invoice, which has been issued via the electronic device, is changed with the invoice, issued from the pre-numbered invoice book. For entry of the number of the invoice, which is changed, the same rules apply as for entry of the number of the invoice. The number of the invoice includes three parts: mark of business premises, mark of the electronic device for issuing invoices, sequence invoice number. The number of the invoice is stated on the invoice in the following form: mark of business premises-mark of the electronic device-sequence number of the invoice. Example: TRGOVINA1-BLAG2-1234. Data are entered separately.</documentation>
 							</annotation>
 						</element>
-						<element name="ReferenceInvoiceIssueDateTime" type="dateTime" minOccurs="0">
+						<element name="ReferenceInvoiceIssueDateTime" type="fu:dateTime" minOccurs="0">
 							<annotation>
 								<documentation>Vpiše se datum in čas izdaje prvotnega računa v primeru naknadne spremembe podatkov na prvotnem računu, če je bil prvoten račun izdan preko elektronske naprave. Podatek se vpiše v primeru, če se z računom, izdanim iz vezane knjige računov, spreminja prvoten račun, ki je bil izdan preko elektronske naprave. Podatek se vpiše v formatu LLLL-MM-DDTUU:MM:SS. / The date and time are entered of issuing the original invoice in cases of subsequent changes of data on the original invoice if the original invoice has been issued via the electronic device. The data is entered in cases when the original invoice, which has been issued via the electronic device, is changed with the invoice, issued from the pre-numbered invoice book. The data is entered in the following format: YYYY-MM-DDTHH:MM:SS.</documentation>
 							</annotation>
@@ -398,7 +392,7 @@
 					<documentation>Enkratni identifikator sporočila. Vsako sporočilo mora imeti enkratno identifikacijsko oznako. Enako velja tudi pri pošiljanju sporočila, ki se zaradi napake pošilja ponovno. / Unique identifier of the message. Every message shall have the unique identification mark. The same is valid also for sending messages, which are resent due to errors. </documentation>
 				</annotation>
 			</element>
-			<element name="DateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+			<element name="DateTime" type="fu:dateTime" minOccurs="1" maxOccurs="1">
 				<annotation>
 					<documentation>Datum in čas pošiljanja sporočila. LLLL-MM-DDTUU:MM:SS. / Date and time of sending the message YYYY-MM-DDTHH:MM:SS</documentation>
 				</annotation>
@@ -421,7 +415,7 @@
 					</restriction>
 				</simpleType>
 			</element>
-			<element name="DateTime" type="xs:dateTime">
+			<element name="DateTime" type="fu:dateTime">
 				<annotation>
 					<documentation>Datum in čas pošiljanja sporočila. LLLL-MM-DDTUU:MM:SS. / Date and time of sending the message</documentation>
 				</annotation>
@@ -633,7 +627,7 @@
 					<documentation>Vpiše se skupni znesek ostalih davkov oziroma dajatev (razen DDV), ki so na računu. Podatek se vpisuje le, če račun vsebuje davke oziroma dajatve, ki niso DDV. Decimalno ločilo je pika. / The total amount is entered of other taxes or duties (except VAT), which are on the invoice. The data is entered only if the invoice includes taxes or duties, which are not VAT. The decimal separator is a dot.</documentation>
 				</annotation>
 			</element>
-			<element name="ExemptVATTaxebleAmount" type="fu:TaxableAmountType" minOccurs="0" maxOccurs="1">
+			<element name="ExemptVATTaxableAmount" type="fu:TaxableAmountType" minOccurs="0" maxOccurs="1">
 				<annotation>
 					<documentation>Skupna vrednost dobav blaga ali storitev na računu, ki so v skladu z Zakonom o davku na dodano vrednost oproščene plačila DDV (po zmanjšanju za popuste). Podatek se vpiše le, če na računu obstaja znesek oproščenih dobav. Decimalno ločilo je pika. / The total value of supplies of goods or services on the invoice, which are in accordance with the Value Added Tax Act exempt from VAT payment (after reduction for discounts). The data is entered only if the amount of exempt supplies exists on the invoice. The decimal separator is a dot.</documentation>
 				</annotation>
@@ -883,7 +877,7 @@
 			<documentation>Šifra napake je v formatu sXXX, kjer je XXX triznakovna številka. / The error code is in sXXX format, where XXX is a three-character number.</documentation>
 		</annotation>
 		<restriction base="string">
-			<pattern value="s[0-9]{3}"/>
+			<pattern value="S[0-9]{3}"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="ErrorMessageType">
@@ -909,4 +903,14 @@
 			<documentation>Echo odgovor. / Echo response.</documentation>
 		</annotation>
 	</element>
+	<simpleType name="date">
+		<restriction base="xs:date">
+			<pattern value="\d{4}[-]\d{2}[-]\d{2}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="dateTime">
+		<restriction base="xs:dateTime">
+			<pattern value="\d{4}[-]\d{2}[-]\d{2}(.)*"/>
+		</restriction>
+	</simpleType>
 </schema>
