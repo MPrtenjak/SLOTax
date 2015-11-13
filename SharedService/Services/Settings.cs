@@ -63,10 +63,14 @@ namespace MNet.SLOTaxService.Services
     {
       this.Schemas = new XmlSchemaSet();
 
+      /*
+        FURS Schemas are somehov invalid
+
       XmlReaderSettings xrs = new XmlReaderSettings();
       xrs.DtdProcessing = DtdProcessing.Parse;
       this.Schemas.Add(this.FursXmlNamespace, XmlReader.Create(this.getFiscalVerificationSchema(), xrs));
       this.Schemas.Add("http://www.w3.org/2000/09/xmldsig#", XmlReader.Create(this.getXmlSigSchema(), xrs));
+      */
     }
 
     private Stream getFiscalVerificationSchema()

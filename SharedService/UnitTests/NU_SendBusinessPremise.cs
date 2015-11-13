@@ -33,10 +33,10 @@ namespace MNet.SLOTaxService.UnitTests
       XmlDocument xmlDoc = this.getXml("ErrBusinessPremise.xml");
       ReturnValue rv = this.taxService.SendBusinessPremise(xmlDoc);
       Assert.IsNotNull(rv.ErrorMessage);
-      Assert.AreEqual(rv.Step, SendingStep.MessageSigned);
+      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
       Assert.False(rv.Success);
       Assert.IsNotNull(rv.MessageSendToFurs);
-      Assert.IsNull(rv.MessageReceivedFromFurs);
+      Assert.IsNotNull(rv.MessageReceivedFromFurs);
       Assert.IsNullOrEmpty(rv.ProtectedID);
       Assert.IsNullOrEmpty(rv.UniqueInvoiceID);
     }

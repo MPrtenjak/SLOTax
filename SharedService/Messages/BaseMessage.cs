@@ -63,7 +63,8 @@ namespace MNet.SLOTaxService.Messages
 
     public void Validate()
     {
-      XmlHelperFunctions.Validate(this.MessageSendToFurs);
+      // FURS Schemas are somehov invalid
+      // XmlHelperFunctions.Validate(this.MessageSendToFurs);
     }
 
     public void SendToFURS()
