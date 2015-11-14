@@ -59,6 +59,8 @@ namespace MNet.SLOTaxService.Services
       webRequest.Method = "POST";
       webRequest.KeepAlive = true;
 
+      webRequest.Timeout = webRequest.ReadWriteTimeout = this.settings.TimeOutInSec * 1000;
+
       return webRequest;
     }
 

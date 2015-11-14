@@ -27,6 +27,7 @@ namespace MNet.SLOTaxGuiTest
   {
     public ObservableCollection<Tuple<string, string>> FursEndPoints { get; set; }
     public ObservableCollection<X509Certificate2> Certificates { get; set; }
+    public ObservableCollection<string> Timeouts { get; set; }
 
     public MainWindow()
     {
@@ -48,8 +49,13 @@ namespace MNet.SLOTaxGuiTest
       foreach (var certificate in cert.GetAllFursCertificates())
         this.Certificates.Add(certificate);
 
+      this.Timeouts = new ObservableCollection<string>();
+      for (int i = 1; i < 11; i++)
+        this.Timeouts.Add(string.Format("{0} sec", i));
+
       this.cbType.SelectedIndex = 0;
       this.cbCertificates.SelectedIndex = 0;
+      this.cbTimeout.SelectedIndex = 1;
       this.showExample(this.btnEcho);
       this.showResults(null);
     }
@@ -114,7 +120,7 @@ namespace MNet.SLOTaxGuiTest
 
       var certificate = this.Certificates[this.cbCertificates.SelectedIndex];
       var endPoint = this.FursEndPoints[this.cbType.SelectedIndex].Item2;
-      Settings settings = Settings.Create(certificate, endPoint, "http://www.fu.gov.si/");
+      Settings settings = Settings.Create(certificate, endPoint, "http://www.fu.gov.si/", this.cbTimeout.SelectedIndex + 1);
       TaxService ts = TaxService.Create(settings);
 
       ReturnValue rv = ts.Send(this.tbInput.Text);

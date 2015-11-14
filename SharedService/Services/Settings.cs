@@ -18,6 +18,7 @@ namespace MNet.SLOTaxService.Services
     public string FursWebServiceURL { get; private set; }
     public XmlSchemaSet Schemas { get; private set; }
     public X509Certificate2 Certificate { get; private set; }
+    public int TimeOutInSec { get; private set; }
 
     public RSACryptoServiceProvider CryptoProvider
     {
@@ -30,33 +31,40 @@ namespace MNet.SLOTaxService.Services
       }
     }
 
+    public static Settings Create(X509Certificate2 certificate, string fursWebServiceURL, string fursXmlNamespace, int timeOutInSec)
+    {
+      return new Settings(certificate, fursWebServiceURL, fursXmlNamespace, timeOutInSec);
+    }
+
     public static Settings Create(X509Certificate2 certificate, string fursWebServiceURL, string fursXmlNamespace)
     {
-      return new Settings(certificate, fursWebServiceURL, fursXmlNamespace);
+      return new Settings(certificate, fursWebServiceURL, fursXmlNamespace, 5);
     }
 
     public static Settings CreateTestSettings(X509Certificate2 certificate)
     {
-      return new Settings(certificate, "https://blagajne-test.fu.gov.si:9002/v1/cash_registers", "http://www.fu.gov.si/");
+      return new Settings(certificate, "https://blagajne-test.fu.gov.si:9002/v1/cash_registers", "http://www.fu.gov.si/", 5);
     }
 
     public static Settings CreateProductionSettings(X509Certificate2 certificate)
     {
-      return new Settings(certificate, "https://blagajne.fu.gov.si:9003/v1/cash_registers", "http://www.fu.gov.si/");
+      return new Settings(certificate, "https://blagajne.fu.gov.si:9003/v1/cash_registers", "http://www.fu.gov.si/", 5);
     }
 
-    private Settings(X509Certificate2 certificate, string fursWebServiceURL, string fursXmlNamespace)
+    private Settings(X509Certificate2 certificate, string fursWebServiceURL, string fursXmlNamespace, int timeout)
     {
       this.FursXmlNamespace = fursXmlNamespace;
       this.FursWebServiceURL = fursWebServiceURL;
       this.Certificate = certificate;
+
+      this.TimeOutInSec = timeout;
 
       this.createSchemas();
     }
 
     private RSACryptoServiceProvider GetCryptoProvider()
     {
-      return MNet.SLOTaxService.Services.Certificates.getCryptoProvider(this.Certificate);
+      return Certificates.getCryptoProvider(this.Certificate);
     }
 
     private void createSchemas()
@@ -64,7 +72,7 @@ namespace MNet.SLOTaxService.Services
       this.Schemas = new XmlSchemaSet();
 
       /*
-        FURS Schemas are somehov invalid
+        FURS Schemas are somehow invalid
 
       XmlReaderSettings xrs = new XmlReaderSettings();
       xrs.DtdProcessing = DtdProcessing.Parse;

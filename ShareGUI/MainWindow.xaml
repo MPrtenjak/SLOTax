@@ -25,13 +25,15 @@
         <Border DockPanel.Dock="Bottom" Margin="10" Padding="10" BorderBrush="Black" BorderThickness="2" >
           <StackPanel x:Name="pnlSettings">
 
-
             <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
             <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="10, 0, 10, 10" />
 
             <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
             <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="10, 0, 10, 10" />
 
+            <TextBlock Text="Prekini povezavo po / Timeout after:" Margin="0,0,0,3" />
+            <ComboBox x:Name="cbTimeout" ItemsSource="{Binding Timeouts}"  Margin="10, 0, 10, 10" />
+            
             <Button Content="Pošlji na FURS / Send tu FURS" Margin="50, 10, 50, 10" MinHeight="30" Click="btnSend"/>
           </StackPanel>
         </Border>
