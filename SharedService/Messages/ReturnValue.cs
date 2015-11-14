@@ -68,6 +68,9 @@ namespace MNet.SLOTaxService.Messages
 
       if (!string.IsNullOrEmpty(errorMessage))
       {
+        // Even in case of an error, we can still calculate ZOI and Barcode
+        this.processCalculate(message);
+
         this.Success = false;
         this.ErrorMessage = errorMessage;
         this.ErrorMessageSource = ErrorMessageSource.System;
