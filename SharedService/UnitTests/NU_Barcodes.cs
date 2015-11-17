@@ -153,9 +153,9 @@ namespace MNet.SLOTaxService.UnitTests
       XmlDocument xmlDoc = this.getXml("OKInvoice4.xml");
       BarCodes bc = BarCodes.Create(xmlDoc);
 
-      Assert.AreEqual(bc.BarCodeValue, "069869408702625034879475616534770898107123456781508071305243");
+      Assert.AreEqual(bc.BarCodeValue, "069869408702625034879475616534770898107101290141508071305245");
 
-      string xmlTaxNumber = XmlHelperFunctions.GetSubNode(xmlDoc.DocumentElement, "fu:OperatorTaxNumber").InnerText;
+      string xmlTaxNumber = XmlHelperFunctions.GetSubNode(xmlDoc.DocumentElement, "fu:TaxNumber").InnerText;
       string codeTaxNumber = bc.BarCodeValue.Substring(39, 8);
       Assert.AreEqual(xmlTaxNumber, codeTaxNumber);
     }
