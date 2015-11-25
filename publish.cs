@@ -18,6 +18,7 @@ class Script
   internal class Worker : PublishWorker
   {
     private string nunitConsoleFullPath = @"D:\orodja\NUnit-2.6.4\bin\nunit-console.exe";
+		private string funalOutputName = @"D:\razvoj\FinalOutput\SloTaxOutput";
     
     public Worker()
     : base()
@@ -47,7 +48,9 @@ class Script
         return ++errorID;
 				
   		showStep("Create folders version");
-      string newFolderName = helper.CreateFolders("FinalOutput", newNumber);        
+      //string newFolderName = helper.CreateFolders("FinalOutput", newNumber);
+			string newFolderName = funalOutputName + @"\" + newNumber;
+
 
       showStep("Copy files");
       if ((!copyFiles(newFolderName, "Net40", "SLOTaxGuiTest40")) ||
