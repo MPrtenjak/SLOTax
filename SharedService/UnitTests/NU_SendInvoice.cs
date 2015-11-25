@@ -70,51 +70,10 @@ namespace MNet.SLOTaxService.UnitTests
     }
 
     [Test]
-    public void SendOKXmlDocument1()
+    public void SendOKXmlDocument([Range(1, 6)] int id)
     {
-      XmlDocument xmlDoc = this.getXml("OKInvoice1.xml");
-      ReturnValue rv = this.taxService.SendInvoice(xmlDoc);
-      Assert.IsNullOrEmpty(rv.ErrorMessage);
-      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
-      Assert.True(rv.Success);
-      Assert.IsNotNull(rv.MessageSendToFurs);
-      Assert.IsNotNull(rv.MessageReceivedFromFurs);
-      Assert.IsNotNullOrEmpty(rv.ProtectedID);
-      Assert.IsNotNullOrEmpty(rv.UniqueInvoiceID);
-    }
-
-    [Test]
-    public void SendOKXmlDocument2()
-    {
-      XmlDocument xmlDoc = this.getXml("OKInvoice2.xml");
-      ReturnValue rv = this.taxService.SendInvoice(xmlDoc);
-      Assert.IsNullOrEmpty(rv.ErrorMessage);
-      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
-      Assert.True(rv.Success);
-      Assert.IsNotNull(rv.MessageSendToFurs);
-      Assert.IsNotNull(rv.MessageReceivedFromFurs);
-      Assert.IsNotNullOrEmpty(rv.ProtectedID);
-      Assert.IsNotNullOrEmpty(rv.UniqueInvoiceID);
-    }
-
-    [Test]
-    public void SendOKXmlDocument3()
-    {
-      XmlDocument xmlDoc = this.getXml("OKInvoice3.xml");
-      ReturnValue rv = this.taxService.SendInvoice(xmlDoc);
-      Assert.IsNullOrEmpty(rv.ErrorMessage);
-      Assert.AreEqual(rv.Step, SendingStep.MessageSend);
-      Assert.True(rv.Success);
-      Assert.IsNotNull(rv.MessageSendToFurs);
-      Assert.IsNotNull(rv.MessageReceivedFromFurs);
-      Assert.IsNotNullOrEmpty(rv.ProtectedID);
-      Assert.IsNotNullOrEmpty(rv.UniqueInvoiceID);
-    }
-
-    [Test]
-    public void SendOKXmlDocument4()
-    {
-      XmlDocument xmlDoc = this.getXml("OKInvoice4.xml");
+      string fileName = string.Format("OKInvoice{0}.xml", id);
+      XmlDocument xmlDoc = this.getXml(fileName);
       ReturnValue rv = this.taxService.SendInvoice(xmlDoc);
       Assert.IsNullOrEmpty(rv.ErrorMessage);
       Assert.AreEqual(rv.Step, SendingStep.MessageSend);
