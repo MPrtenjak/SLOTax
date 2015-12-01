@@ -40,6 +40,7 @@ namespace MNet.SLOTaxService.Services
     {
       X509Store store = new X509Store(storeName, storeLocation);
       var matchingCertificates = this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
+      matchingCertificates.AddRange(this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
       matchingCertificates = this.filterCertificates(matchingCertificates, (cert) => { return cert.SubjectName.Name.IndexOf(taxNumber) > 0; });
 
       return this.getSingleCertificate(matchingCertificates);
@@ -101,7 +102,10 @@ namespace MNet.SLOTaxService.Services
 
     private X509Certificate2Collection getAllFursCertificates()
     {
-      return this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
+      X509Certificate2Collection certificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
+      certificates.AddRange(this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
+
+      return certificates;
     }
 
     private X509Certificate2Collection filterCertificates(X509Certificate2Collection certificates, Func<X509Certificate2, bool> filter)
