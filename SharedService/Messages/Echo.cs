@@ -30,7 +30,7 @@ namespace MNet.SLOTaxService.Messages
 
     public void Check()
     {
-      this.checkRoot(MessageType.Echo);
+      this.CheckRoot(MessageType.Echo);
     }
 
     public void Sign()

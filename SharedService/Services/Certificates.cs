@@ -15,35 +15,35 @@ namespace MNet.SLOTaxService.Services
   {
     public X509Certificate2 GetBySerialNumber(string serialNumber)
     {
-      var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+      var matchingCertificates = this.FindAllCertificatesInAllStores(this.AllStores(), (store) => { return store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
 
-      return this.getSingleCertificate(matchingCertificates);
+      return this.GetSingleCertificate(matchingCertificates);
     }
 
     public X509Certificate2 GetBySerialNumber(string serialNumber, StoreLocation storeLocation, StoreName storeName)
     {
       X509Store store = new X509Store(storeName, storeLocation);
-      var matchingCertificates = this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+      var matchingCertificates = this.FindAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
 
-      return this.getSingleCertificate(matchingCertificates);
+      return this.GetSingleCertificate(matchingCertificates);
     }
 
     public X509Certificate2 GetByTaxNumber(string taxNumber)
     {
       var matchingCertificates = this.getAllFursCertificates();
-      matchingCertificates = this.filterCertificates(matchingCertificates, (cert) => { return cert.SubjectName.Name.IndexOf(taxNumber) > 0; });
+      matchingCertificates = this.FilterCertificates(matchingCertificates, (cert) => { return cert.SubjectName.Name.IndexOf(taxNumber) > 0; });
 
-      return this.getSingleCertificate(matchingCertificates);
+      return this.GetSingleCertificate(matchingCertificates);
     }
 
     public X509Certificate2 GetByTaxNumber(string taxNumber, StoreLocation storeLocation, StoreName storeName)
     {
       X509Store store = new X509Store(storeName, storeLocation);
-      var matchingCertificates = this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
-      matchingCertificates.AddRange(this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
-      matchingCertificates = this.filterCertificates(matchingCertificates, (cert) => { return cert.SubjectName.Name.IndexOf(taxNumber) > 0; });
+      var matchingCertificates = this.FindAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
+      matchingCertificates.AddRange(this.FindAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
+      matchingCertificates = this.FilterCertificates(matchingCertificates, (cert) => { return cert.SubjectName.Name.IndexOf(taxNumber) > 0; });
 
-      return this.getSingleCertificate(matchingCertificates);
+      return this.GetSingleCertificate(matchingCertificates);
     }
 
     public X509Certificate2 GetFromFile(string certificateFile, string password)
@@ -65,7 +65,7 @@ namespace MNet.SLOTaxService.Services
       return list;
     }
 
-    internal static RSACryptoServiceProvider getCryptoProvider(X509Certificate2 certificate)
+    internal static RSACryptoServiceProvider GetCryptoProvider(X509Certificate2 certificate)
     {
       RSACryptoServiceProvider privateKey = (RSACryptoServiceProvider)certificate.PrivateKey;
 
@@ -81,7 +81,7 @@ namespace MNet.SLOTaxService.Services
       return new RSACryptoServiceProvider(cspParameters);
     }
 
-    private X509Certificate2Collection findAllCertificatesInStore(X509Store store, Func<X509Store, X509Certificate2Collection> searchAction)
+    private X509Certificate2Collection FindAllCertificatesInStore(X509Store store, Func<X509Store, X509Certificate2Collection> searchAction)
     {
       store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
       var matchingCertificates = searchAction(store);
@@ -90,25 +90,25 @@ namespace MNet.SLOTaxService.Services
       return matchingCertificates;
     }
 
-    private X509Certificate2Collection findAllCertificatesInAllStores(IList<X509Store> stores, Func<X509Store, X509Certificate2Collection> searchAction)
+    private X509Certificate2Collection FindAllCertificatesInAllStores(IList<X509Store> stores, Func<X509Store, X509Certificate2Collection> searchAction)
     {
       X509Certificate2Collection matchingCertificates = new X509Certificate2Collection();
 
       foreach (var store in stores)
-        matchingCertificates.AddRange(this.findAllCertificatesInStore(store, searchAction));
+        matchingCertificates.AddRange(this.FindAllCertificatesInStore(store, searchAction));
 
       return matchingCertificates;
     }
 
     private X509Certificate2Collection getAllFursCertificates()
     {
-      X509Certificate2Collection certificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
-      certificates.AddRange(this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
+      X509Certificate2Collection certificates = this.FindAllCertificatesInAllStores(this.AllStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=Tax CA Test, O=state-institutions, C=SI", true); });
+      certificates.AddRange(this.FindAllCertificatesInAllStores(this.AllStores(), (store) => { return store.Certificates.Find(X509FindType.FindByIssuerDistinguishedName, "CN=TaxCA, O=state-institutions, C=SI", true); }));
 
       return certificates;
     }
 
-    private X509Certificate2Collection filterCertificates(X509Certificate2Collection certificates, Func<X509Certificate2, bool> filter)
+    private X509Certificate2Collection FilterCertificates(X509Certificate2Collection certificates, Func<X509Certificate2, bool> filter)
     {
       X509Certificate2Collection matchingCertificates = new X509Certificate2Collection();
 
@@ -121,7 +121,7 @@ namespace MNet.SLOTaxService.Services
       return matchingCertificates;
     }
 
-    private X509Certificate2 getSingleCertificate(X509Certificate2Collection certificates)
+    private X509Certificate2 GetSingleCertificate(X509Certificate2Collection certificates)
     {
       if ((certificates == null) || (certificates.Count < 1))
         throw new Exception("Ne najdem digitalnega potrdila / Can't find certificate");
@@ -132,7 +132,7 @@ namespace MNet.SLOTaxService.Services
       return certificates[0];
     }
 
-    private IList<X509Store> allStores()
+    private IList<X509Store> AllStores()
     {
       return new List<X509Store>()
       {

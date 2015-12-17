@@ -20,7 +20,7 @@ namespace MNet.SLOTaxService.Messages
 
     public void Check()
     {
-      this.checkRoot(MessageType.Invoice);
+      this.CheckRoot(MessageType.Invoice);
 
       if (this.MessageAction == MessageAction.Calculate)
       {
@@ -28,7 +28,7 @@ namespace MNet.SLOTaxService.Messages
         return;
       }
 
-      this.checkHeader();
+      this.CheckHeader();
       this.checkData();
     }
 

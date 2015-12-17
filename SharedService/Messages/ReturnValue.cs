@@ -69,7 +69,7 @@ namespace MNet.SLOTaxService.Messages
       if (!string.IsNullOrEmpty(errorMessage))
       {
         // Even in case of an error, we can still calculate ZOI and Barcode
-        this.processCalculate(message);
+        this.CrocessCalculate(message);
 
         this.Success = false;
         this.ErrorMessage = errorMessage;
@@ -82,19 +82,19 @@ namespace MNet.SLOTaxService.Messages
 
       // only calculation is special case
       if (message.MessageAction == MessageAction.Calculate)
-        this.processCalculate(message);
+        this.CrocessCalculate(message);
       else
-        this.processSend();
+        this.ProcessSend();
     }
 
-    private void processCalculate(IMessage message)
+    private void CrocessCalculate(IMessage message)
     {
-      this.getProtectedID(message.Message);
+      this.GetProtectedID(message.Message);
     }
 
-    private void processSend()
+    private void ProcessSend()
     {
-      this.getProtectedID(this.originalMessage);
+      this.GetProtectedID(this.originalMessage);
       if (this.MessageReceivedFromFurs == null)
       {
         this.Success = false;
@@ -117,7 +117,7 @@ namespace MNet.SLOTaxService.Messages
         this.UniqueInvoiceID = uniqueInvoiceIDNode.InnerText;
     }
 
-    private void getProtectedID(XmlDocument checkedDocument)
+    private void GetProtectedID(XmlDocument checkedDocument)
     {
       XmlNode id = XmlHelperFunctions.GetSubNode(checkedDocument.DocumentElement, "fu:ProtectedID");
       this.ProtectedID = (id == null) ? string.Empty : id.InnerText;
