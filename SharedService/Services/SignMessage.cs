@@ -4,6 +4,7 @@
 // <author>Matjaz Prtenjak</author>
 //-----------------------------------------------------------------------
 
+using System;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
@@ -55,6 +56,10 @@ namespace MNet.SLOTaxService.Services
     private Reference getReference(XmlNode mainNode)
     {
       Reference reference = new Reference();
+
+      XmlAttribute mainNodeAttr = mainNode.Attributes["Id"];
+      if (mainNodeAttr == null)
+        throw new ArgumentException("Element 'Invoice' nima argumenta 'Id' / Node 'Invoice' is missing 'Id' attribute");
 
       string mainNodeID = mainNode.Attributes["Id"].InnerText;
       reference.Uri = "#" + mainNodeID;
