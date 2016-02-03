@@ -48,7 +48,7 @@ namespace MNet.SLOTaxService.Services
 
     private string getNodeValue(XmlElement parentElement, string nodeName)
     {
-      XmlNode node = XmlHelperFunctions.GetSubNode(parentElement, nodeName);
+      XmlNode node = XmlHelperFunctions.GetFirstSubNode(parentElement, nodeName);
       if (node == null) return string.Empty;
 
       return node.InnerText;
