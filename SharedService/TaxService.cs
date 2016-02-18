@@ -22,7 +22,7 @@ namespace MNet.SLOTaxService
 
     public ReturnValue CalculateProtectiveMark(XmlDocument message)
     {
-      return this.execute(Invoice.Create(message, this.Settings, MessageAction.Calculate));
+      return this.Execute(Invoice.Create(message, this.Settings, MessageAction.Calculate));
     }
 
     public ReturnValue Send(string message)
@@ -53,35 +53,35 @@ namespace MNet.SLOTaxService
 
     public ReturnValue SendEcho(string message)
     {
-      return this.execute(Echo.Create(message, this.Settings));
+      return this.Execute(Echo.Create(message, this.Settings));
     }
 
     public ReturnValue SendEcho(XmlDocument message)
     {
-      return this.execute(Echo.Create(message, this.Settings));
+      return this.Execute(Echo.Create(message, this.Settings));
     }
 
     public ReturnValue SendBusinessPremise(XmlDocument message)
     {
-      return this.execute(BusinessPremise.Create(message, this.Settings));
+      return this.Execute(BusinessPremise.Create(message, this.Settings));
     }
 
     public ReturnValue SendInvoice(XmlDocument message)
     {
-      return this.execute(Invoice.Create(message, this.Settings, MessageAction.Send));
+      return this.Execute(Invoice.Create(message, this.Settings, MessageAction.Send));
     }
 
-    private ReturnValue execute(IMessage msg)
+    private ReturnValue Execute(IMessage msg)
     {
-      return this.execute(msg, true);
+      return this.Execute(msg, true);
     }
 
-    private ReturnValue calculate(IMessage msg)
+    private ReturnValue Calculate(IMessage msg)
     {
-      return this.execute(msg, false);
+      return this.Execute(msg, false);
     }
 
-    private ReturnValue execute(IMessage msg, bool send)
+    private ReturnValue Execute(IMessage msg, bool send)
     {
       SendingStep step = SendingStep.MessageReceived;
       try

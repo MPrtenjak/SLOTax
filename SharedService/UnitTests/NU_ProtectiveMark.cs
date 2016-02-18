@@ -45,7 +45,7 @@ namespace MNet.SLOTaxService.UnitTests
       Certificates cert = new Certificates();
       X509Certificate2 fileCert = cert.GetFromFile(fileCertPath, null);
 
-      RSACryptoServiceProvider provider = Certificates.getCryptoProvider(fileCert);
+      RSACryptoServiceProvider provider = Certificates.GetCryptoProvider(fileCert);
 
       string input = @"test";
       string output = this.pm.Calculate(input, provider);

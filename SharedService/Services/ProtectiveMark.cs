@@ -36,17 +36,17 @@ namespace MNet.SLOTaxService.Services
     {
       StringBuilder fullText = new StringBuilder(200);
 
-      fullText.Append(this.getNodeValue(invoice, "fu:TaxNumber"));
-      fullText.Append(this.getNodeValue(invoice, "fu:IssueDateTime"));
-      fullText.Append(this.getNodeValue(invoice, "fu:InvoiceNumber"));
-      fullText.Append(this.getNodeValue(invoice, "fu:BusinessPremiseID"));
-      fullText.Append(this.getNodeValue(invoice, "fu:ElectronicDeviceID"));
-      fullText.Append(this.getNodeValue(invoice, "fu:InvoiceAmount"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:TaxNumber"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:IssueDateTime"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:InvoiceNumber"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:BusinessPremiseID"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:ElectronicDeviceID"));
+      fullText.Append(this.GetNodeValue(invoice, "fu:InvoiceAmount"));
 
       return this.Calculate(fullText.ToString(), provider);
     }
 
-    private string getNodeValue(XmlElement parentElement, string nodeName)
+    private string GetNodeValue(XmlElement parentElement, string nodeName)
     {
       XmlNode node = XmlHelperFunctions.GetFirstSubNode(parentElement, nodeName);
       if (node == null) return string.Empty;

@@ -22,7 +22,7 @@ namespace MNet.SLOTaxService.Services
 
     public XmlDocument Send(XmlDocument message, MessageType messageType)
     {
-      HttpWebRequest request = this.createWebRequest(message, messageType);
+      HttpWebRequest request = this.CreateWebRequest(message, messageType);
 
       ServicePointManager.Expect100Continue = true;
       ////ServicePointManager.SecurityProtocol = System.Security.Authentication.SslProtocols.Tls;
@@ -49,7 +49,7 @@ namespace MNet.SLOTaxService.Services
       return result;
     }
 
-    public HttpWebRequest createWebRequest(XmlDocument message, MessageType messageType)
+    public HttpWebRequest CreateWebRequest(XmlDocument message, MessageType messageType)
     {
       HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(this.settings.FursWebServiceURL);
 

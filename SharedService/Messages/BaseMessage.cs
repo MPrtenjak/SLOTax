@@ -12,7 +12,7 @@ using MNet.SLOTaxService.Utils;
 
 namespace MNet.SLOTaxService.Messages
 {
-  internal class BaseMessage
+  internal abstract class BaseMessage
   {
     public XmlDocument Message { get; private set; }
     public XmlDocument MessageSendToFurs { get; private set; }
@@ -73,13 +73,13 @@ namespace MNet.SLOTaxService.Messages
       this.MessageReceivedFromFurs = sm.Send(this.MessageSendToFurs, this.MessageType);
     }
 
-    protected void checkRoot(MessageType expectedType)
+    protected void CheckRoot(MessageType expectedType)
     {
       if (this.MessageType != expectedType)
         throw new ArgumentOutOfRangeException("Neznani dokument / Unknown document");
     }
 
-    protected void checkHeader()
+    protected void CheckHeader()
     {
       XmlNode header = XmlHelperFunctions.GetSubNode(this.Message.DocumentElement, "fu:Header");
       if (header != null) return;

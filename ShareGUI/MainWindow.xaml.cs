@@ -33,12 +33,12 @@ namespace MNet.SLOTaxGuiTest
     {
       this.InitializeComponent();
 
-      this.init();
+      this.Init();
 
       this.DataContext = this;
     }
 
-    private void init()
+    private void Init()
     {
       this.FursEndPoints = new ObservableCollection<Tuple<string, string>>();
       this.FursEndPoints.Add(new Tuple<string, string>("TEST / TEST (https://blagajne-test.fu.gov.si:9002/v1/cash_registers)", @"https://blagajne-test.fu.gov.si:9002/v1/cash_registers"));
@@ -56,34 +56,34 @@ namespace MNet.SLOTaxGuiTest
       this.cbType.SelectedIndex = 0;
       this.cbCertificates.SelectedIndex = 0;
       this.cbTimeout.SelectedIndex = 1;
-      this.showExample(this.btnEcho);
-      this.showResults(null);
+      this.ShowExample(this.btnEcho);
+      this.ShowResults(null);
     }
 
-    private Stream getResource(string name)
+    private Stream GetResource(string name)
     {
       return typeof(MainWindow).Assembly.GetManifestResourceStream(@"MNet.SLOTaxGuiTest.Resources." + name);
     }
 
-    private string prettyXml(Stream stream)
+    private string PrettyXml(Stream stream)
     {
       using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
       {
         string wholeXML = reader.ReadToEnd();
-        return this.prettyXml(wholeXML);
+        return this.PrettyXml(wholeXML);
       }
     }
 
-    private string prettyXml(string xmlString)
+    private string PrettyXml(string xmlString)
     {
       XmlDocument xmlDoc = new XmlDocument();
       xmlDoc.PreserveWhitespace = true;
       xmlDoc.LoadXml(xmlString);
 
-      return this.prettyXml(xmlDoc);
+      return this.PrettyXml(xmlDoc);
     }
 
-    private string prettyXml(XmlDocument xmlDoc)
+    private string PrettyXml(XmlDocument xmlDoc)
     {
       var settings = new XmlWriterSettings();
       settings.OmitXmlDeclaration = false;
@@ -99,7 +99,7 @@ namespace MNet.SLOTaxGuiTest
       return stringBuilder.ToString();
     }
 
-    private void showExample(object sender)
+    private void ShowExample(object sender)
     {
       string resourceName = null;
       if (sender == this.btnEcho) resourceName = "Echo.xml";
@@ -107,10 +107,10 @@ namespace MNet.SLOTaxGuiTest
       else if (sender == this.btnBusinessPremises) resourceName = "BusinessPremises.xml";
 
       if (!string.IsNullOrEmpty(resourceName))
-        this.tbInput.Text = this.prettyXml(this.getResource(resourceName));
+        this.tbInput.Text = this.PrettyXml(this.GetResource(resourceName));
     }
 
-    private void executeSend()
+    private void ExecuteSend()
     {
       if (this.Certificates.Count < 1)
       {
@@ -124,13 +124,13 @@ namespace MNet.SLOTaxGuiTest
       TaxService ts = TaxService.Create(settings);
 
       ReturnValue rv = ts.Send(this.tbInput.Text);
-      this.procesReturnValue(rv);
+      this.ProcesReturnValue(rv);
     }
 
-    private void procesReturnValue(ReturnValue rv)
+    private void ProcesReturnValue(ReturnValue rv)
     {
-      if (rv.MessageSendToFurs != null) this.tbToFurs.Text = this.prettyXml(rv.MessageSendToFurs);
-      if (rv.MessageReceivedFromFurs != null) this.tbFromFurs.Text = this.prettyXml(rv.MessageReceivedFromFurs);
+      if (rv.MessageSendToFurs != null) this.tbToFurs.Text = this.PrettyXml(rv.MessageSendToFurs);
+      if (rv.MessageReceivedFromFurs != null) this.tbFromFurs.Text = this.PrettyXml(rv.MessageReceivedFromFurs);
 
       this.tbError.Text = rv.ErrorMessage;
       this.tbEOR.Text = rv.UniqueInvoiceID;
@@ -145,13 +145,13 @@ namespace MNet.SLOTaxGuiTest
         //// this.imgBarcode.Text = this.tbBarcode.Text;
 
         Image img = rv.BarCodes.DrawQRCode(180, ImageFormat.Png);
-        this.imgBarcode.Source = this.convertDrawingImageToWPFImage(img);
+        this.imgBarcode.Source = this.ConvertDrawingImageToWPFImage(img);
       }
 
-      this.showResults(rv);
+      this.ShowResults(rv);
     }
 
-    private System.Windows.Media.ImageSource convertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
+    private System.Windows.Media.ImageSource ConvertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
     {
       System.Windows.Controls.Image img = new System.Windows.Controls.Image();
 
@@ -160,7 +160,7 @@ namespace MNet.SLOTaxGuiTest
       return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
     }
 
-    private void showResults(ReturnValue rv)
+    private void ShowResults(ReturnValue rv)
     {
       this.pnlSuccess.Visibility = ((rv == null) || (!rv.Success)) ? Visibility.Collapsed : Visibility.Visible;
       this.pnlError.Visibility = ((rv == null) || (string.IsNullOrEmpty(rv.ErrorMessage))) ? Visibility.Collapsed : Visibility.Visible;
@@ -176,7 +176,7 @@ namespace MNet.SLOTaxGuiTest
                                    (this.pnlBarcode.Visibility == Visibility.Visible)) ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    private void openFile()
+    private void OpenFile()
     {
       Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -208,17 +208,17 @@ namespace MNet.SLOTaxGuiTest
 
     private void btnExampleClick(object sender, RoutedEventArgs e)
     {
-      this.showExample(sender);
+      this.ShowExample(sender);
     }
 
     private void btnSend(object sender, RoutedEventArgs e)
     {
-      this.executeSend();
+      this.ExecuteSend();
     }
 
     private void btnOpen_Click(object sender, RoutedEventArgs e)
     {
-      this.openFile();
+      this.OpenFile();
     }
 
     private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

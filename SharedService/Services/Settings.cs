@@ -64,7 +64,7 @@ namespace MNet.SLOTaxService.Services
 
     private RSACryptoServiceProvider GetCryptoProvider()
     {
-      return Certificates.getCryptoProvider(this.Certificate);
+      return Certificates.GetCryptoProvider(this.Certificate);
     }
 
     private void createSchemas()

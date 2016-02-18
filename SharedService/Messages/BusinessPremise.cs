@@ -20,8 +20,8 @@ namespace MNet.SLOTaxService.Messages
 
     public void Check()
     {
-      this.checkRoot(MessageType.BusinessPremise);
-      this.checkHeader();
+      this.CheckRoot(MessageType.BusinessPremise);
+      this.CheckHeader();
       this.checkData();
     }
 

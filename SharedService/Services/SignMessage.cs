@@ -23,15 +23,15 @@ namespace MNet.SLOTaxService.Services
 
     public void Sign(XmlDocument message, MessageType messageType)
     {
-      XmlNode mainNode = this.getMainNode(message, messageType);
+      XmlNode mainNode = this.GetMainNode(message, messageType);
       if (mainNode == null) return;
 
       SetCryptoConfig.SetAlgorithm();
 
       SignedXml signedXml = new SignedXml(message);
       signedXml.SigningKey = this.settings.CryptoProvider;
-      signedXml.AddReference(this.getReference(mainNode));
-      signedXml.KeyInfo = this.getKeyInfo();
+      signedXml.AddReference(this.GetReference(mainNode));
+      signedXml.KeyInfo = this.GetKeyInfo();
       signedXml.SignedInfo.SignatureMethod = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
       signedXml.ComputeSignature();
 
@@ -39,7 +39,7 @@ namespace MNet.SLOTaxService.Services
       mainNode.AppendChild(xmlDigitalSignature);
     }
 
-    private KeyInfo getKeyInfo()
+    private KeyInfo GetKeyInfo()
     {
       X509Extension extension = this.settings.Certificate.Extensions[1];
       AsnEncodedData asndata = new AsnEncodedData(extension.Oid, extension.RawData);
@@ -53,7 +53,7 @@ namespace MNet.SLOTaxService.Services
       return keyInfo;
     }
 
-    private Reference getReference(XmlNode mainNode)
+    private Reference GetReference(XmlNode mainNode)
     {
       Reference reference = new Reference();
 
@@ -69,7 +69,7 @@ namespace MNet.SLOTaxService.Services
       return reference;
     }
 
-    private XmlNode getMainNode(XmlDocument message, MessageType messageType)
+    private XmlNode GetMainNode(XmlDocument message, MessageType messageType)
     {
       switch (messageType)
       {
