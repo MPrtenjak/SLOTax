@@ -23,12 +23,15 @@
         <TextBlock DockPanel.Dock="Top" Text="Vhod / Input" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18.667" Foreground="#FF0D2BEA"  />
 
         <Border DockPanel.Dock="Bottom" Margin="10" Padding="10" BorderBrush="Black" BorderThickness="2" >
-          <StackPanel x:Name="pnlSettings">
+          <StackPanel x:Name="pnlSettings" Margin="2,0,-2,0">
 
             <TextBlock Text="Tip / Type:" Margin="0,0,0,3" />
             <ComboBox x:Name="cbType" ItemsSource="{Binding FursEndPoints}" DisplayMemberPath="Item1" Margin="10, 0, 10, 10" />
 
-            <TextBlock Text="Digitalno potrdilo / Certificate:" Margin="0,0,0,3" />
+            <DockPanel Margin="0,0,0,3" Height="30">
+              <TextBlock DockPanel.Dock="Left" Text="Digitalno potrdilo / Certificate:" Margin="0, 10, 20, 0" />
+              <Button DockPanel.Dock="Right" Content="Naloži iz diska / Load from disk" Click="btnLoadCertificate" Margin="0,0, 10, 0" />
+            </DockPanel>
             <ComboBox x:Name="cbCertificates" ItemsSource="{Binding Certificates}"  DisplayMemberPath="Subject" Margin="10, 0, 10, 10" />
 
             <TextBlock Text="Prekini povezavo po / Timeout after:" Margin="0,0,0,3" />

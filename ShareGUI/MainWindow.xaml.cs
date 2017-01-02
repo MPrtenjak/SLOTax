@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Xml;
+using Microsoft.Win32;
 using MNet.SLOTaxService;
 using MNet.SLOTaxService.Messages;
 using MNet.SLOTaxService.Services;
@@ -127,6 +128,31 @@ namespace MNet.SLOTaxGuiTest
       this.procesReturnValue(rv);
     }
 
+    private void executeLoadCertificate()
+    {
+      OpenFileDialog openFileDialog = new OpenFileDialog();
+      openFileDialog.Filter = "Certificates (*.p12)|*.p12|All files (*.*)|*.*";
+      if (openFileDialog.ShowDialog() == true)
+      {
+        PasswordBox pb = new PasswordBox();
+        pb.ShowDialog();
+
+        if (!pb.Commit) return;
+
+        try
+        {
+          Certificates cert = new Certificates();
+          X509Certificate2 newCertificate = cert.GetFromFile(openFileDialog.FileName, pb.Password);
+          if (newCertificate != null)
+            this.Certificates.Add(newCertificate);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show(ex.Message);
+        }
+      }
+    }
+
     private void procesReturnValue(ReturnValue rv)
     {
       if (rv.MessageSendToFurs != null) this.tbToFurs.Text = this.prettyXml(rv.MessageSendToFurs);
@@ -214,6 +240,11 @@ namespace MNet.SLOTaxGuiTest
     private void btnSend(object sender, RoutedEventArgs e)
     {
       this.executeSend();
+    }
+
+    private void btnLoadCertificate(object sender, RoutedEventArgs e)
+    {
+      this.executeLoadCertificate();
     }
 
     private void btnOpen_Click(object sender, RoutedEventArgs e)
