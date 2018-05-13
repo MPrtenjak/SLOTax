@@ -22,11 +22,11 @@ namespace MNet.SLOTaxService.Services
 
     public XmlDocument Send(XmlDocument message, MessageType messageType)
     {
-      HttpWebRequest request = this.createWebRequest(message, messageType);
-
       ServicePointManager.Expect100Continue = true;
       ServicePointManager.SecurityProtocol = SetCryptoConfig.SetTLSProtocol();
       ServicePointManager.ServerCertificateValidationCallback += new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate, chain, sslPolicyErrors) => { return true; });
+
+      HttpWebRequest request = this.createWebRequest(message, messageType);
 
       request.ClientCertificates.Add(this.settings.Certificate);
       using (Stream stream = request.GetRequestStream())
