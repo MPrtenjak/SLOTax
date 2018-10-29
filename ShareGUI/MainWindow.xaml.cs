@@ -44,6 +44,7 @@ namespace MNet.SLOTaxGuiTest
       this.FursEndPoints = new ObservableCollection<Tuple<string, string>>();
       this.FursEndPoints.Add(new Tuple<string, string>("TEST / TEST (https://blagajne-test.fu.gov.si:9002/v1/cash_registers)", @"https://blagajne-test.fu.gov.si:9002/v1/cash_registers"));
       this.FursEndPoints.Add(new Tuple<string, string>("Produkcija / Production (https://blagajne.fu.gov.si:9003/v1/cash_registers)", @"https://blagajne.fu.gov.si:9003/v1/cash_registers"));
+      this.FursEndPoints.Add(new Tuple<string, string>("Začasna Produkcija / Temporary production (https://blagajne.fu.gov.si:9009/v1/cash_registers)", @"https://blagajne.fu.gov.si:9009/v1/cash_registers"));
 
       Certificates cert = new Certificates();
       this.Certificates = new ObservableCollection<X509Certificate2>();
