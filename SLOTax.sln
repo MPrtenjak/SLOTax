@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxService", "SLOTaxService\SLOTaxService.csproj", "{B2F0A646-91F9-4DDB-AADD-F7A8C1D97FD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxGuiTest", "SLOTaxGuiTest\SLOTaxGuiTest.csproj", "{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxService40", "SLOTaxService40\SLOTaxService40.csproj", "{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedService", "SharedService\SharedService.shproj", "{F9108A90-F742-4C41-8B9C-F4F401B39000}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLOTaxGuiTest40", "SLOTaxGuiTest40\SLOTaxGuiTest40.csproj", "{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedGUI", "ShareGUI\SharedGUI.shproj", "{8FAE0C17-9F19-430D-A742-AD14AFE0FCDE}"
 EndProject
@@ -23,11 +19,9 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ShareGUI\ShareGUI.projitems*{8fae0c17-9f19-430d-a742-ad14afe0fcde}*SharedItemsImports = 13
-		ShareGUI\ShareGUI.projitems*{f27df764-b9f0-45aa-80be-8f7a6e88363d}*SharedItemsImports = 4
 		SharedService\SharedService.projitems*{b2f0a646-91f9-4ddb-aadd-f7a8c1d97fd7}*SharedItemsImports = 4
-		SharedService\SharedService.projitems*{f9108a90-f742-4c41-8b9c-f4f401b39000}*SharedItemsImports = 13
 		ShareGUI\ShareGUI.projitems*{bbfe6edd-e97c-4dcc-8c45-5b143e4731aa}*SharedItemsImports = 4
-		SharedService\SharedService.projitems*{37aee794-a2c5-44f8-aea4-8367bb2ab1f0}*SharedItemsImports = 4
+		SharedService\SharedService.projitems*{f9108a90-f742-4c41-8b9c-f4f401b39000}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,20 +41,11 @@ Global
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.NUnit|Any CPU.Build.0 = NUnit|Any CPU
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBFE6EDD-E97C-4DCC-8C45-5B143E4731AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.NUnit|Any CPU.ActiveCfg = NUnit|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.NUnit|Any CPU.Build.0 = NUnit|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37AEE794-A2C5-44F8-AEA4-8367BB2AB1F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.NUnit|Any CPU.ActiveCfg = NUnit|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.NUnit|Any CPU.Build.0 = NUnit|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F27DF764-B9F0-45AA-80BE-8F7A6E88363D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E93A9B48-824A-4BE4-BF45-93FB203C7D41}
 	EndGlobalSection
 EndGlobal
