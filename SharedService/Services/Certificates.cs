@@ -13,9 +13,28 @@ namespace MNet.SLOTaxService.Services
 {
   public class Certificates
   {
+    public X509Certificate2 GetByThumbprint(string thumbprint)
+    {
+      // not working properly
+      // var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, false); });
+
+      // work around
+      var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(),
+        (store) => this.filterCertificates(store.Certificates,
+          (cert) => string.Compare(cert.Thumbprint, thumbprint, true) == 0));
+
+      return this.getSingleCertificate(matchingCertificates);
+    }
+
     public X509Certificate2 GetBySerialNumber(string serialNumber)
     {
-      var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+      // not working properly
+      // var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(), (store) => { return store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+
+      // work around
+      var matchingCertificates = this.findAllCertificatesInAllStores(this.allStores(),
+        (store) => this.filterCertificates(store.Certificates,
+          (cert) => string.Compare(cert.SerialNumber, serialNumber, true) == 0));
 
       return this.getSingleCertificate(matchingCertificates);
     }
@@ -23,7 +42,13 @@ namespace MNet.SLOTaxService.Services
     public X509Certificate2 GetBySerialNumber(string serialNumber, StoreLocation storeLocation, StoreName storeName)
     {
       X509Store store = new X509Store(storeName, storeLocation);
-      var matchingCertificates = this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+
+      // not working properly
+      // var matchingCertificates = this.findAllCertificatesInStore(store, (s) => { return s.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true); });
+
+      // work around
+      var matchingCertificates = this.filterCertificates(store.Certificates,
+          (cert) => string.Compare(cert.SerialNumber, serialNumber, true) == 0);
 
       return this.getSingleCertificate(matchingCertificates);
     }
@@ -69,9 +94,11 @@ namespace MNet.SLOTaxService.Services
     {
       RSACryptoServiceProvider privateKey = (RSACryptoServiceProvider)certificate.PrivateKey;
 
-      CspParameters cspParameters = new CspParameters();
-      cspParameters.KeyContainerName = privateKey.CspKeyContainerInfo.KeyContainerName;
-      cspParameters.KeyNumber = (privateKey.CspKeyContainerInfo.KeyNumber == KeyNumber.Exchange) ? 1 : 2;
+      CspParameters cspParameters = new CspParameters
+      {
+        KeyContainerName = privateKey.CspKeyContainerInfo.KeyContainerName,
+        KeyNumber = (privateKey.CspKeyContainerInfo.KeyNumber == KeyNumber.Exchange) ? 1 : 2
+      };
 
       if (privateKey.CspKeyContainerInfo.MachineKeyStore)
         cspParameters.Flags |= CspProviderFlags.UseMachineKeyStore;
